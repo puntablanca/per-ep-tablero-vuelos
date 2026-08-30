@@ -1,0 +1,7 @@
+[tool.pytest.ini_options]
+# Sin esto, `pytest` no encuentra el paquete `app`: solo funciona con
+# `python -m pytest`, que agrega el directorio actual al path. El pipeline
+# corre `pytest` a secas, así que la configuración tiene que estar acá.
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-q"
