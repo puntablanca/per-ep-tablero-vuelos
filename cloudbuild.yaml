@@ -1,0 +1,30 @@
+# Construye la imagen, la sube al registro y despliega el servicio.
+# Misma forma que int-01: docker build, docker push, gcloud run deploy.
+substitutions:
+  _SERVICIO: tablero-vuelos
+  _REGION: us-central1
+  _TAG: latest
+
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args: ["build", "-t",
+           "${_REGION}-docker.pkg.dev/$PROJECT_ID/tablero/${_SERVICIO}:${_TAG}", "."]
+
+  - name: gcr.io/cloud-builders/docker
+    args: ["push",
+           "${_REGION}-docker.pkg.dev/$PROJECT_ID/tablero/${_SERVICIO}:${_TAG}"]
+
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - ${_SERVICIO}
+      - --image=${_REGION}-docker.pkg.dev/$PROJECT_ID/tablero/${_SERVICIO}:${_TAG}
+      - --region=${_REGION}
+      - --platform=managed
+      - --allow-unauthenticated
+      - --port=8080
+
+options:
+  logging: CLOUD_LOGGING_ONLY

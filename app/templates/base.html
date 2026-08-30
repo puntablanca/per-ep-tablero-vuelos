@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<title>{% block titulo %}Tablero de vuelos{% endblock %}</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/static/estilo.css">
+</head><body>
+<div class="barra">
+  <span class="marca">TABLERO DE VUELOS</span>
+  <nav>{% block nav %}{% endblock %}</nav>
+  <span class="fuente">fuente: {{ fuente }}</span>
+</div>
+{% block contenido %}{% endblock %}
+</body></html>

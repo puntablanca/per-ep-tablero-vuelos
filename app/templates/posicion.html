@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block titulo %}Posición de vuelos{% endblock %}
+{% block nav %}<a href="/posicion" aria-current="page">Posición</a>{% endblock %}
+{% block contenido %}
+<div class="resumen">
+  <span class="n">{{ sin_senal }}</span>
+  <span class="t">vuelos en tierra</span>
+  <span class="s">de {{ vuelos|length }} seguidos</span>
+</div>
+<table>
+  <thead><tr><th>Vuelo</th><th>País</th><th>Latitud</th><th>Longitud</th>
+             <th>Altitud</th><th>Velocidad</th><th>Estado</th></tr></thead>
+  <tbody>
+  {% for v in vuelos %}
+    <tr class="{{ 'tierra' if v.en_tierra else '' }}">
+      <td class="cs">{{ v.callsign }}</td>
+      <td>{{ v.pais }}</td>
+      <td class="num">{{ '%.2f'|format(v.latitud) }}</td>
+      <td class="num">{{ '%.2f'|format(v.longitud) }}</td>
+      <td class="num">{{ '%.0f'|format(v.altitud) }} m</td>
+      <td class="num">{{ '%.0f'|format(v.velocidad) }} m/s</td>
+      <td class="estado">{{ 'EN TIERRA' if v.en_tierra else 'en ruta' }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,545 @@
+{
+  "generado": "instantánea de ejemplo, para trabajar sin red",
+  "vuelos": [
+    {
+      "callsign": "AAL3998",
+      "pais": "United States",
+      "longitud": -43.3272,
+      "latitud": -22.7836,
+      "altitud": 11174.5,
+      "velocidad": 125.6,
+      "en_tierra": false
+    },
+    {
+      "callsign": "DLH315",
+      "pais": "Germany",
+      "longitud": -3.4889,
+      "latitud": 6.354,
+      "altitud": 6719.6,
+      "velocidad": 50.8,
+      "en_tierra": false
+    },
+    {
+      "callsign": "IBE8963",
+      "pais": "Spain",
+      "longitud": -12.6059,
+      "latitud": 6.9664,
+      "altitud": 7796.6,
+      "velocidad": 39.9,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AFR8671",
+      "pais": "France",
+      "longitud": -68.868,
+      "latitud": -32.6974,
+      "altitud": 9482.3,
+      "velocidad": 42.2,
+      "en_tierra": false
+    },
+    {
+      "callsign": "BAW801",
+      "pais": "United Kingdom",
+      "longitud": -80.0403,
+      "latitud": -31.333,
+      "altitud": 10559.4,
+      "velocidad": 125.3,
+      "en_tierra": false
+    },
+    {
+      "callsign": "KLM6450",
+      "pais": "Netherlands",
+      "longitud": -28.0197,
+      "latitud": 45.2145,
+      "altitud": 4818.6,
+      "velocidad": 212.2,
+      "en_tierra": false
+    },
+    {
+      "callsign": "UAL2297",
+      "pais": "Colombia",
+      "longitud": -7.2628,
+      "latitud": -25.6189,
+      "altitud": 1658.8,
+      "velocidad": 57.5,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AVA7246",
+      "pais": "Panama",
+      "longitud": -19.8495,
+      "latitud": 39.5494,
+      "altitud": 5138.0,
+      "velocidad": 220.9,
+      "en_tierra": false
+    },
+    {
+      "callsign": "CMP8850",
+      "pais": "Chile",
+      "longitud": -44.2807,
+      "latitud": 16.2457,
+      "altitud": 11031.3,
+      "velocidad": 180.7,
+      "en_tierra": false
+    },
+    {
+      "callsign": "LAN4682",
+      "pais": "Canada",
+      "longitud": 6.8647,
+      "latitud": 23.7295,
+      "altitud": 1989.8,
+      "velocidad": 228.1,
+      "en_tierra": false
+    },
+    {
+      "callsign": "ACA9470",
+      "pais": "Mexico",
+      "longitud": -46.2925,
+      "latitud": 27.3883,
+      "altitud": 2575.7,
+      "velocidad": 220.4,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX4768",
+      "pais": "United States",
+      "longitud": -102.3212,
+      "latitud": 7.4521,
+      "altitud": 7792.9,
+      "velocidad": 128.1,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AAL1191",
+      "pais": "Germany",
+      "longitud": -66.2818,
+      "latitud": -21.0342,
+      "altitud": 3585.5,
+      "velocidad": 203.7,
+      "en_tierra": false
+    },
+    {
+      "callsign": "DLH824",
+      "pais": "Spain",
+      "longitud": -41.7715,
+      "latitud": 31.5006,
+      "altitud": 4609.2,
+      "velocidad": 155.4,
+      "en_tierra": false
+    },
+    {
+      "callsign": "IBE4672",
+      "pais": "France",
+      "longitud": -54.317,
+      "latitud": 51.8718,
+      "altitud": 3778.0,
+      "velocidad": 20.4,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AFR614",
+      "pais": "United Kingdom",
+      "longitud": 1.5608,
+      "latitud": 49.5429,
+      "altitud": 3557.7,
+      "velocidad": 69.8,
+      "en_tierra": false
+    },
+    {
+      "callsign": "BAW5667",
+      "pais": "Netherlands",
+      "longitud": -78.4574,
+      "latitud": 48.4447,
+      "altitud": 10939.2,
+      "velocidad": 100.1,
+      "en_tierra": false
+    },
+    {
+      "callsign": "KLM8620",
+      "pais": "Colombia",
+      "longitud": -69.3397,
+      "latitud": 40.5476,
+      "altitud": 8307.8,
+      "velocidad": 27.2,
+      "en_tierra": false
+    },
+    {
+      "callsign": "UAL8407",
+      "pais": "Panama",
+      "longitud": -83.8161,
+      "latitud": 20.549,
+      "altitud": 8730.6,
+      "velocidad": 248.2,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AVA4330",
+      "pais": "Chile",
+      "longitud": -52.338,
+      "latitud": 13.165,
+      "altitud": 139.8,
+      "velocidad": 110.0,
+      "en_tierra": false
+    },
+    {
+      "callsign": "CMP428",
+      "pais": "Canada",
+      "longitud": -70.5589,
+      "latitud": 16.6715,
+      "altitud": 1625.9,
+      "velocidad": 167.9,
+      "en_tierra": false
+    },
+    {
+      "callsign": "LAN5882",
+      "pais": "Mexico",
+      "longitud": -32.4105,
+      "latitud": -3.6784,
+      "altitud": 8624.8,
+      "velocidad": 195.6,
+      "en_tierra": true
+    },
+    {
+      "callsign": "ACA1092",
+      "pais": "United States",
+      "longitud": 2.31,
+      "latitud": -32.1723,
+      "altitud": 4503.8,
+      "velocidad": 166.4,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX9954",
+      "pais": "Germany",
+      "longitud": -77.6768,
+      "latitud": -2.6999,
+      "altitud": 3814.6,
+      "velocidad": 97.8,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AAL5021",
+      "pais": "Spain",
+      "longitud": -18.8,
+      "latitud": -24.981,
+      "altitud": 9919.3,
+      "velocidad": 257.4,
+      "en_tierra": false
+    },
+    {
+      "callsign": "DLH2253",
+      "pais": "France",
+      "longitud": -78.9379,
+      "latitud": -14.8617,
+      "altitud": 9806.5,
+      "velocidad": 63.3,
+      "en_tierra": false
+    },
+    {
+      "callsign": "IBE7230",
+      "pais": "United Kingdom",
+      "longitud": -36.1581,
+      "latitud": -25.6561,
+      "altitud": 7328.8,
+      "velocidad": 251.5,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AFR3777",
+      "pais": "Netherlands",
+      "longitud": -62.7577,
+      "latitud": 39.576,
+      "altitud": 2065.3,
+      "velocidad": 89.2,
+      "en_tierra": false
+    },
+    {
+      "callsign": "BAW9412",
+      "pais": "Colombia",
+      "longitud": -61.1611,
+      "latitud": -14.6476,
+      "altitud": 1475.2,
+      "velocidad": 140.4,
+      "en_tierra": false
+    },
+    {
+      "callsign": "KLM9518",
+      "pais": "Panama",
+      "longitud": -94.8681,
+      "latitud": -10.0411,
+      "altitud": 9848.2,
+      "velocidad": 170.1,
+      "en_tierra": false
+    },
+    {
+      "callsign": "UAL5757",
+      "pais": "Chile",
+      "longitud": -43.7254,
+      "latitud": 2.2294,
+      "altitud": 6324.5,
+      "velocidad": 225.2,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AVA6930",
+      "pais": "Canada",
+      "longitud": -81.4098,
+      "latitud": 14.8766,
+      "altitud": 433.6,
+      "velocidad": 109.5,
+      "en_tierra": false
+    },
+    {
+      "callsign": "CMP7920",
+      "pais": "Mexico",
+      "longitud": 0.8517,
+      "latitud": 41.6781,
+      "altitud": 12040.3,
+      "velocidad": 115.1,
+      "en_tierra": false
+    },
+    {
+      "callsign": "LAN3738",
+      "pais": "United States",
+      "longitud": -113.9279,
+      "latitud": 5.2737,
+      "altitud": 9191.2,
+      "velocidad": 198.2,
+      "en_tierra": false
+    },
+    {
+      "callsign": "ACA9010",
+      "pais": "Germany",
+      "longitud": -75.0253,
+      "latitud": -14.4379,
+      "altitud": 830.4,
+      "velocidad": 156.0,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX4106",
+      "pais": "Spain",
+      "longitud": -112.3203,
+      "latitud": 43.7104,
+      "altitud": 8463.2,
+      "velocidad": 244.8,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AAL7143",
+      "pais": "France",
+      "longitud": -45.3039,
+      "latitud": -32.8696,
+      "altitud": 9092.6,
+      "velocidad": 45.5,
+      "en_tierra": false
+    },
+    {
+      "callsign": "DLH425",
+      "pais": "United Kingdom",
+      "longitud": -51.8545,
+      "latitud": 1.5825,
+      "altitud": 11456.3,
+      "velocidad": 162.2,
+      "en_tierra": false
+    },
+    {
+      "callsign": "IBE4236",
+      "pais": "Netherlands",
+      "longitud": 4.4708,
+      "latitud": 12.5243,
+      "altitud": 9900.9,
+      "velocidad": 16.3,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AFR2102",
+      "pais": "Colombia",
+      "longitud": -50.6357,
+      "latitud": 36.2457,
+      "altitud": 2089.9,
+      "velocidad": 209.8,
+      "en_tierra": false
+    },
+    {
+      "callsign": "BAW2205",
+      "pais": "Panama",
+      "longitud": -14.2392,
+      "latitud": -33.3546,
+      "altitud": 7669.0,
+      "velocidad": 228.6,
+      "en_tierra": true
+    },
+    {
+      "callsign": "KLM4546",
+      "pais": "Chile",
+      "longitud": -86.7194,
+      "latitud": 19.1557,
+      "altitud": 6340.0,
+      "velocidad": 13.5,
+      "en_tierra": false
+    },
+    {
+      "callsign": "UAL129",
+      "pais": "Canada",
+      "longitud": -10.0152,
+      "latitud": 32.6711,
+      "altitud": 563.5,
+      "velocidad": 13.2,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AVA640",
+      "pais": "Mexico",
+      "longitud": -10.3394,
+      "latitud": -26.593,
+      "altitud": 6125.9,
+      "velocidad": 83.7,
+      "en_tierra": false
+    },
+    {
+      "callsign": "CMP5855",
+      "pais": "United States",
+      "longitud": -69.3896,
+      "latitud": -0.4913,
+      "altitud": 3710.2,
+      "velocidad": 70.2,
+      "en_tierra": false
+    },
+    {
+      "callsign": "LAN7123",
+      "pais": "Germany",
+      "longitud": -102.4069,
+      "latitud": 13.7752,
+      "altitud": 8735.7,
+      "velocidad": 100.8,
+      "en_tierra": true
+    },
+    {
+      "callsign": "ACA3025",
+      "pais": "Spain",
+      "longitud": -112.5868,
+      "latitud": 5.6303,
+      "altitud": 7933.3,
+      "velocidad": 143.5,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX811",
+      "pais": "France",
+      "longitud": -39.5113,
+      "latitud": 3.117,
+      "altitud": 4543.5,
+      "velocidad": 131.5,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AAL6989",
+      "pais": "United Kingdom",
+      "longitud": 1.7364,
+      "latitud": 1.9732,
+      "altitud": 218.7,
+      "velocidad": 57.9,
+      "en_tierra": false
+    },
+    {
+      "callsign": "DLH9764",
+      "pais": "Netherlands",
+      "longitud": -108.9808,
+      "latitud": 2.5404,
+      "altitud": 5195.4,
+      "velocidad": 233.1,
+      "en_tierra": false
+    },
+    {
+      "callsign": "IBE6231",
+      "pais": "Colombia",
+      "longitud": 4.0702,
+      "latitud": 14.0805,
+      "altitud": 10618.3,
+      "velocidad": 32.2,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AFR8786",
+      "pais": "Panama",
+      "longitud": -18.1489,
+      "latitud": 23.4103,
+      "altitud": 8951.6,
+      "velocidad": 149.4,
+      "en_tierra": true
+    },
+    {
+      "callsign": "BAW9729",
+      "pais": "Chile",
+      "longitud": -27.7107,
+      "latitud": 6.7251,
+      "altitud": 2878.8,
+      "velocidad": 103.0,
+      "en_tierra": false
+    },
+    {
+      "callsign": "KLM9345",
+      "pais": "Canada",
+      "longitud": -105.4883,
+      "latitud": 41.7202,
+      "altitud": 2185.7,
+      "velocidad": 6.2,
+      "en_tierra": false
+    },
+    {
+      "callsign": "UAL2087",
+      "pais": "Mexico",
+      "longitud": -114.7911,
+      "latitud": -24.1017,
+      "altitud": 5879.4,
+      "velocidad": 184.5,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AVA5005",
+      "pais": "United States",
+      "longitud": -17.3578,
+      "latitud": -30.8808,
+      "altitud": 9362.5,
+      "velocidad": 135.5,
+      "en_tierra": false
+    },
+    {
+      "callsign": "CMP1848",
+      "pais": "Germany",
+      "longitud": -48.1377,
+      "latitud": -25.4074,
+      "altitud": 6750.5,
+      "velocidad": 145.8,
+      "en_tierra": false
+    },
+    {
+      "callsign": "LAN3056",
+      "pais": "Spain",
+      "longitud": -13.6645,
+      "latitud": -13.1772,
+      "altitud": 2193.2,
+      "velocidad": 66.2,
+      "en_tierra": false
+    },
+    {
+      "callsign": "ACA6550",
+      "pais": "France",
+      "longitud": -86.1351,
+      "latitud": 17.553,
+      "altitud": 11452.9,
+      "velocidad": 147.5,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX6249",
+      "pais": "United Kingdom",
+      "longitud": -54.961,
+      "latitud": 49.6829,
+      "altitud": 5036.5,
+      "velocidad": 198.1,
+      "en_tierra": true
+    }
+  ]
+}
