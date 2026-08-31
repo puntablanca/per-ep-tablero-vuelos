@@ -66,7 +66,16 @@ le dice al que clona qué variables hacen falta.
 
 ## Paso 3 · Correrla
 
-### Con Python, para desarrollar
+Hay **tres maneras**, y no son alternativas: son tres niveles que prueban cosas distintas.
+El detalle de por qué está en [Los tres entornos](#los-tres-entornos).
+
+| Nivel | Cómo | Queda en |
+| --- | --- | --- |
+| **1 · Local** | `uvicorn app.main:app --reload --port 8080` | `localhost:8080` |
+| **2 · Contenedor** | `docker compose up --build` | `localhost:8080` |
+| **3 · Nube** | `gcloud run services proxy ...` | `localhost:8097` |
+
+### 1 · Con Python, para desarrollar
 
 Un entorno propio, para no mezclar con lo que tenga instalado en el sistema:
 
@@ -90,7 +99,7 @@ Queda en <http://localhost:8080/posicion>.
 uvicorn app.main:app --reload --port 8099
 ```
 
-### Con contenedor, que es lo que usa el pipeline
+### 2 · Con contenedor, que es lo que usa el pipeline
 
 ```
 docker compose up --build
@@ -111,6 +120,33 @@ muestra el tablero sale corrida respecto a su reloj:
 ```
 TZ=America/Mexico_City
 ```
+
+### 3 · El servicio de la nube, en su máquina
+
+El servicio desplegado **no es público**: no hay una dirección que se pueda abrir en el
+navegador. Se llega con un túnel autenticado, que firma cada petición con su identidad de
+`gcloud`:
+
+```
+gcloud run services proxy tablero-vuelos \
+  --region=us-central1 \
+  --project=per-ep-tablero-vuelos \
+  --port=8097
+```
+
+Y el tablero queda en <http://localhost:8097/posicion>.
+
+Tres cosas de este comando:
+
+- **Se queda corriendo.** Mientras el proceso viva, el túnel vive. Se cierra con `Ctrl+C`.
+- **No hay contraseña ni llave que copiar.** Usa su credencial de `gcloud`, que es la que
+  tiene el `run.invoker`. Si expira, `gcloud auth login`.
+- **El puerto va en 8097 y no en 8080** para no chocar con la copia local ni con el
+  contenedor. Puede correr los tres a la vez, cada uno en su puerto, y comparar.
+
+**Lo que va a ver ahí es la instantánea local, no vuelos en vivo.** No es una falla del
+despliegue: OpenSky no es alcanzable desde Cloud Run, y la barra lo dice en ámbar. El
+detalle está más abajo, en [OpenSky no es alcanzable desde Cloud Run](#opensky-no-es-alcanzable-desde-cloud-run).
 
 ## Paso 4 · Probarla
 
@@ -190,7 +226,7 @@ Dos cosas que los diagramas dicen y el código no grita:
 | --- | --- | --- |
 | **1 · Local** | `uvicorn app.main:app --reload` | Que la lógica hace lo que uno cree |
 | **2 · Contenedor** | `PUERTO=8099 docker compose up --build` | Que el empaque está completo y corre en una máquina limpia |
-| **3 · Nube** | `scripts/desplegar.sh` | Que arranca con los permisos y la red de verdad |
+| **3 · Nube** | `scripts/desplegar.sh` para subirlo, `gcloud run services proxy` para verlo | Que arranca con los permisos y la red de verdad |
 
 **No se sube al siguiente nivel hasta que el anterior está en verde.** Un fallo
 descubierto en el nivel 3 cuesta minutos de espera; el mismo fallo en el nivel 1 cuesta
@@ -212,11 +248,12 @@ Se despliega con `--no-allow-unauthenticated`, y quién puede invocarlo lo decid
 un binding nominal. No hay una dirección que cualquiera pueda abrir. Para verlo:
 
 ```
-gcloud run services proxy tablero-vuelos --region=us-central1 --port=8099
+gcloud run services proxy tablero-vuelos \
+  --region=us-central1 --project=per-ep-tablero-vuelos --port=8097
 ```
 
-Eso abre un túnel autenticado y el tablero queda en <http://localhost:8099>. El puerto va
-explícito porque el 8080 suele estar ocupado.
+Eso abre un túnel autenticado y el tablero queda en <http://localhost:8097>. El puerto va
+explícito para no chocar con la copia local ni con el contenedor.
 
 Para darle acceso a alguien más:
 

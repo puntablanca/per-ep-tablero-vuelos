@@ -3,6 +3,15 @@
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 Versionado según [SemVer](https://semver.org/lang/es/).
 
+## [0.4.2] - 2026-08-31
+
+### Cambiado
+- El README junta **las tres maneras de correrlo** en un solo lugar, con una tabla de
+  entrada: local, contenedor y el servicio de la nube por túnel. El comando del proxy
+  estaba solo en la sección de despliegue, 130 líneas más abajo, y le faltaba `--project`.
+- Los puertos quedan sin choque entre las tres formas: 8080 local y contenedor, 8097 el
+  túnel. Se pueden correr las tres a la vez y comparar.
+
 ## [0.4.1] - 2026-08-31
 
 ### Cambiado
