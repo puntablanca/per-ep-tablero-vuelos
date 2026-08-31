@@ -16,7 +16,7 @@ def test_api_vuelos_devuelve_lista():
     assert r.status_code == 200
     datos = r.json()
     assert datos["total"] == len(datos["vuelos"]) <= 5
-    assert datos["fuente"] in ("opensky", "respaldo")
+    assert datos["fuente"] in ("opensky", "opensky-anonimo", "respaldo")
 
 
 def test_cada_vuelo_trae_los_campos_que_la_vista_usa():

@@ -4,16 +4,18 @@ Hoy tiene una sola vista: la posición de los vuelos que se están siguiendo.
 """
 from __future__ import annotations
 
+from pathlib import Path
+
 from fastapi import FastAPI, Request
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from pathlib import Path
 
+# El `.env` ya lo cargó `app/__init__.py`, que corre antes de esto.
 from app.opensky import obtener_vuelos
 
 BASE = Path(__file__).parent
-app = FastAPI(title="Tablero de vuelos", version="0.1.0")
+app = FastAPI(title="Tablero de vuelos", version="0.1.1")
 app.mount("/static", StaticFiles(directory=BASE / "static"), name="static")
 plantillas = Jinja2Templates(directory=str(BASE / "templates"))
 

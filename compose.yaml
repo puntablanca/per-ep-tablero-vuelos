@@ -4,4 +4,9 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - PYTHONUNBUFFERED=1
+      PYTHONUNBUFFERED: "1"
+      # Compose lee el `.env` de esta carpeta solo. El `:-` deja la variable vacía
+      # cuando no está, en vez de fallar: así el contenedor levanta igual sin
+      # credenciales y la aplicación cae al nivel anónimo.
+      OPENSKY_CLIENT_ID: ${OPENSKY_CLIENT_ID:-}
+      OPENSKY_CLIENT_SECRET: ${OPENSKY_CLIENT_SECRET:-}
