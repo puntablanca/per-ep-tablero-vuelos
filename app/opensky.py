@@ -37,7 +37,10 @@ URL_TOKEN = (
     "https://auth.opensky-network.org/auth/realms/opensky-network"
     "/protocol/openid-connect/token"
 )
-TIMEOUT = 8.0
+# Configurable por entorno: en una maquina de escritorio 8 segundos sobran, y desde
+# un servicio en la nube el mismo destino puede tardar bastante mas o no contestar.
+# Poder subirlo sin tocar el codigo es lo que permite distinguir "lento" de "bloqueado".
+TIMEOUT = float(os.getenv("OPENSKY_TIMEOUT", "8"))
 
 # El token de OpenSky vive 30 minutos. Se renueva con margen para no llegar justo
 # y comerse un 401 en medio de una demostración.
