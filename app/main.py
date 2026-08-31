@@ -21,7 +21,7 @@ from app.opensky import obtener_vuelos
 logging.basicConfig(level=logging.INFO, format="%(levelname)s [%(name)s] %(message)s")
 
 BASE = Path(__file__).parent
-app = FastAPI(title="Tablero de vuelos", version="0.3.1")
+app = FastAPI(title="Tablero de vuelos", version="0.4.0")
 app.mount("/static", StaticFiles(directory=BASE / "static"), name="static")
 plantillas = Jinja2Templates(directory=str(BASE / "templates"))
 

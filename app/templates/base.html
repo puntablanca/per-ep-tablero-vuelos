@@ -14,6 +14,10 @@
     {%- elif fuente is defined %} · <span class="viejo">instantánea local, sin hora</span>
     {%- endif %}
     · cargado {{ hora_de_carga() }}
+    {#- El boton es un enlace a la misma ruta, no JavaScript: la pagina se arma en el
+        servidor, asi que volver a pedirla ES actualizar los datos. Y usa la ruta actual,
+        para que cualquier vista nueva lo herede sin tocar nada. -#}
+    <a class="refresco" href="{{ request.url.path }}" title="Vuelve a consultar la fuente y actualiza la hora">Actualizar datos</a>
   </span>
 </div>
 {% block contenido %}{% endblock %}

@@ -118,7 +118,7 @@ TZ=America/Mexico_City
 pytest -q
 ```
 
-Son 14 pruebas y **ninguna sale a la red**: el cliente de OpenSky se reemplaza por uno
+Son 15 pruebas y **ninguna sale a la red**: el cliente de OpenSky se reemplaza por uno
 falso. Si alguna falla por no encontrar el paquete `app`, es que se corrió desde otra
 carpeta: el `pyproject.toml` trae `pythonpath = ["."]` y hay que estar en la raíz.
 
