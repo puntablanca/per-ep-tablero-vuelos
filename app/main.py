@@ -16,7 +16,7 @@ from fastapi.templating import Jinja2Templates
 from app.opensky import obtener_vuelos
 
 BASE = Path(__file__).parent
-app = FastAPI(title="Tablero de vuelos", version="0.2.0")
+app = FastAPI(title="Tablero de vuelos", version="0.3.0")
 app.mount("/static", StaticFiles(directory=BASE / "static"), name="static")
 plantillas = Jinja2Templates(directory=str(BASE / "templates"))
 

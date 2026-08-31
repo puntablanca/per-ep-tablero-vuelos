@@ -1,0 +1,216 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="Vista Técnica N1" name="Vista Técnica N1">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="main" parent="1" style="swimlane;whiteSpace=wrap;html=1;startSize=40;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;dashed=1;rounded=1;" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;font color=&quot;#293241&quot;&gt;Vista Técnica N1: tecnologías  ·  Tablero de vuelos&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry x="40" y="40" width="1420" height="810" as="geometry" />
+        </mxCell>
+        <mxCell id="f" parent="main" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fillColor=#E6F3FF;strokeColor=#4A90D9;fontSize=14;fontStyle=1;dashed=1;rounded=1;" value="Fuentes de datos" vertex="1">
+          <mxGeometry x="20" y="60" width="250" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" parent="f" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Posiciones de aeronaves" vertex="1">
+          <mxGeometry x="12" y="42" width="222" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" parent="c1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value="OpenSky Network&lt;br&gt;GET /api/states/all" vertex="1">
+          <mxGeometry x="6" y="28" width="210" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" parent="f" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Respaldo local" vertex="1">
+          <mxGeometry x="12" y="126" width="222" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" parent="c3" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value="app/static/vuelos-respaldo.json&lt;br&gt;60 registros, sin hora" vertex="1">
+          <mxGeometry x="6" y="28" width="210" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" parent="f" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#333333;" value="OpenSky reparte por crédito diario: 400 anónimo contados por IP, 4.000 autenticado. Cada consulta cuesta 4." vertex="1">
+          <mxGeometry x="12" y="210" width="224" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="etl" parent="main" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fillColor=#E6F3FF;strokeColor=#4A90D9;fontSize=14;fontStyle=1;dashed=1;rounded=1;" value="Proceso ETL" vertex="1">
+          <mxGeometry x="310" y="60" width="470" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" parent="etl" style="swimlane;whiteSpace=wrap;html=1;startSize=36;fillColor=#98c1d9;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;rounded=1;" value="Extracción" vertex="1">
+          <mxGeometry x="12" y="42" width="218" height="244" as="geometry" />
+        </mxCell>
+        <mxCell id="c7" parent="c6" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Cliente HTTP" vertex="1">
+          <mxGeometry x="8" y="40" width="200" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" parent="c7" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value="httpx 0.28" vertex="1">
+          <mxGeometry x="6" y="28" width="188" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" parent="c6" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Autenticación" vertex="1">
+          <mxGeometry x="8" y="92" width="200" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c10" parent="c9" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value="OAuth2 client credentials&lt;br&gt;(Keycloak)" vertex="1">
+          <mxGeometry x="6" y="28" width="188" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="c11" parent="c6" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Caché de credencial" vertex="1">
+          <mxGeometry x="8" y="144" width="200" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c12" parent="c11" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value="token en memoria&lt;br&gt;30 min, con 2 de margen" vertex="1">
+          <mxGeometry x="6" y="28" width="188" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="c13" parent="c6" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Degradación" vertex="1">
+          <mxGeometry x="8" y="196" width="200" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="c14" parent="c13" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value="autenticado, anónimo,&lt;br&gt;respaldo" vertex="1">
+          <mxGeometry x="6" y="28" width="188" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="c15" parent="etl" style="swimlane;whiteSpace=wrap;html=1;startSize=36;fillColor=#98c1d9;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;rounded=1;" value="Transformación" vertex="1">
+          <mxGeometry x="240" y="42" width="218" height="244" as="geometry" />
+        </mxCell>
+        <mxCell id="c16" parent="c15" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Normalización" vertex="1">
+          <mxGeometry x="8" y="40" width="200" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c17" parent="c16" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value="app/opensky.py · _normalizar()" vertex="1">
+          <mxGeometry x="6" y="28" width="188" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="c18" parent="c15" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Descarte" vertex="1">
+          <mxGeometry x="8" y="92" width="200" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c19" parent="c18" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value="sin identificador&lt;br&gt;o sin coordenadas" vertex="1">
+          <mxGeometry x="6" y="28" width="188" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="c20" parent="c15" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Recorte y conteo" vertex="1">
+          <mxGeometry x="8" y="144" width="200" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c21" parent="c20" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value="límite 40&lt;br&gt;cuenta los de tierra" vertex="1">
+          <mxGeometry x="6" y="28" width="188" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="c22" parent="c15" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" value="Carga" vertex="1">
+          <mxGeometry x="8" y="196" width="200" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="c23" parent="c22" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value="no existe" vertex="1">
+          <mxGeometry x="6" y="28" width="188" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="c24" parent="etl" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#333333;" value="Todo en Python 3.12, dentro de la petición. Sin planificador, sin cola, sin proceso aparte." vertex="1">
+          <mxGeometry x="12" y="296" width="446" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="alm" parent="main" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fillColor=#fbeaea;strokeColor=#b85450;fontSize=14;fontStyle=1;dashed=1;rounded=1;" value="Almacenamiento" vertex="1">
+          <mxGeometry x="820" y="60" width="210" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="c25" parent="alm" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" value="Persistencia" vertex="1">
+          <mxGeometry x="12" y="42" width="184" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="c26" parent="c25" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value="ninguna" vertex="1">
+          <mxGeometry x="6" y="28" width="172" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="c27" parent="alm" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#333333;" value="El dato vive en la memoria del proceso lo que dura la petición y se descarta.&lt;br&gt;&lt;br&gt;Si algún día hace falta historia, acá entra Postgres o un archivo por hora, y aparece la fase de Carga que hoy está en rojo." vertex="1">
+          <mxGeometry x="12" y="126" width="186" height="214" as="geometry" />
+        </mxCell>
+        <mxCell id="cons" parent="main" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fillColor=#E6F3FF;strokeColor=#4A90D9;fontSize=14;fontStyle=1;dashed=1;rounded=1;" value="Capa de consumo" vertex="1">
+          <mxGeometry x="1070" y="60" width="330" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="c28" parent="cons" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Servidor de aplicación" vertex="1">
+          <mxGeometry x="12" y="42" width="302" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c29" parent="c28" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value="Uvicorn 0.51 · FastAPI 0.139" vertex="1">
+          <mxGeometry x="6" y="28" width="290" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="c30" parent="cons" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Vista de posición" vertex="1">
+          <mxGeometry x="12" y="94" width="302" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c31" parent="c30" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value="Jinja2 3.1 · GET /posicion" vertex="1">
+          <mxGeometry x="6" y="28" width="290" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="c32" parent="cons" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Interfaz de datos" vertex="1">
+          <mxGeometry x="12" y="146" width="302" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c33" parent="c32" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value="JSON · GET /api/vuelos" vertex="1">
+          <mxGeometry x="6" y="28" width="290" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="c34" parent="cons" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Chequeo de salud" vertex="1">
+          <mxGeometry x="12" y="198" width="302" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="c35" parent="c34" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value="GET /salud" vertex="1">
+          <mxGeometry x="6" y="28" width="290" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="c36" parent="cons" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Procedencia" vertex="1">
+          <mxGeometry x="12" y="246" width="302" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c37" parent="c36" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value="fuente, hora del lote,&lt;br&gt;antigüedad, hora de carga" vertex="1">
+          <mxGeometry x="6" y="28" width="290" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="c38" parent="cons" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#333333;" value="Estilos en CSS propio, sin framework y sin JavaScript." vertex="1">
+          <mxGeometry x="12" y="298" width="304" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="e39" parent="main" source="f" target="etl" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#666666;fontSize=11;exitX=1;exitY=0.16;exitDx=0;exitDy=0;entryX=0;entryY=0.16;entryDx=0;entryDy=0;" value="httpx" edge="1">
+          <mxGeometry relative="1" as="geometry">
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e40" parent="main" source="etl" target="alm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#b85450;dashed=1;fontSize=11;fontColor=#b85450;exitX=1;exitY=0.16;exitDx=0;exitDy=0;entryX=0;entryY=0.16;entryDx=0;entryDy=0;" value="no carga" edge="1">
+          <mxGeometry relative="1" as="geometry">
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e41" parent="main" source="alm" target="cons" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#b85450;dashed=1;fontSize=11;fontColor=#b85450;exitX=1;exitY=0.16;exitDx=0;exitDy=0;entryX=0;entryY=0.16;entryDx=0;entryDy=0;" value="no lee" edge="1">
+          <mxGeometry relative="1" as="geometry">
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e42" parent="main" source="etl" target="cons" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#666666;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" value="objeto en memoria, en la misma petición" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="545" y="448" />
+              <mxPoint x="1235" y="448" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tr" parent="main" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fillColor=#E6F3FF;strokeColor=#4A90D9;fontSize=14;fontStyle=1;dashed=1;rounded=1;" value="Componentes transversales" vertex="1">
+          <mxGeometry x="20" y="482" width="1380" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="c43" parent="tr" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Empaque" vertex="1">
+          <mxGeometry x="12" y="44" width="217" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="c44" parent="c43" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value="Docker · python:3.12-slim&lt;br&gt;compose.yaml" vertex="1">
+          <mxGeometry x="6" y="28" width="205" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="c45" parent="tr" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Pruebas" vertex="1">
+          <mxGeometry x="239" y="44" width="217" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="c46" parent="c45" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value="pytest 9.1&lt;br&gt;12 pruebas, ninguna sale a la red" vertex="1">
+          <mxGeometry x="6" y="28" width="205" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="c47" parent="tr" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Integración continua" vertex="1">
+          <mxGeometry x="466" y="44" width="217" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="c48" parent="c47" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value="GitHub Actions&lt;br&gt;sin ningún secreto" vertex="1">
+          <mxGeometry x="6" y="28" width="205" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="c49" parent="tr" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Entrega a la nube" vertex="1">
+          <mxGeometry x="693" y="44" width="217" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="c50" parent="c49" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value="Cloud Build · Artifact Registry&lt;br&gt;Cloud Run, us-central1" vertex="1">
+          <mxGeometry x="6" y="28" width="205" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="c51" parent="tr" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=1;" value="Gestión de secretos" vertex="1">
+          <mxGeometry x="920" y="44" width="217" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="c52" parent="c51" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value=".env en local&lt;br&gt;Secret Manager: falta" vertex="1">
+          <mxGeometry x="6" y="28" width="205" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="c53" parent="tr" style="swimlane;whiteSpace=wrap;html=1;startSize=26;rounded=1;fontSize=11;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Control de versiones" vertex="1">
+          <mxGeometry x="1147" y="44" width="217" height="96" as="geometry" />
+        </mxCell>
+        <mxCell id="c54" parent="c53" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontColor=#333333;" value="Git · GitHub&lt;br&gt;organización puntablanca" vertex="1">
+          <mxGeometry x="6" y="28" width="205" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="c55" parent="tr" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#333333;" value="La gestión de secretos es lo único que falta cerrar: hoy las credenciales viajan en un .env que no se sube, y en la nube tendrían que salir de Secret Manager." vertex="1">
+          <mxGeometry x="12" y="148" width="1350" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="leg" parent="main" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fillColor=#E6F3FF;strokeColor=#4A90D9;fontSize=14;fontStyle=1;dashed=1;rounded=1;" value="Nomenclatura" vertex="1">
+          <mxGeometry x="20" y="700" width="1380" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="c56" parent="leg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Definido y construido" vertex="1">
+          <mxGeometry x="12" y="44" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="c57" parent="leg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=1;" value="Por definir" vertex="1">
+          <mxGeometry x="274" y="44" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="c58" parent="leg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" value="Descartado" vertex="1">
+          <mxGeometry x="536" y="44" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="c59" parent="leg" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#333333;" value="Cada componente abre y nombra su tecnología. Misma estructura que la N0." vertex="1">
+          <mxGeometry x="800" y="44" width="560" height="34" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

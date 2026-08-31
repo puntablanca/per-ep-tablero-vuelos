@@ -1,0 +1,144 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="Vista Técnica N0" name="Vista Técnica N0">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="main" parent="1" style="swimlane;whiteSpace=wrap;html=1;startSize=40;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;dashed=1;rounded=1;" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;font color=&quot;#293241&quot;&gt;Vista Técnica N0: componentes  ·  Tablero de vuelos&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry x="40" y="40" width="1320" height="710" as="geometry" />
+        </mxCell>
+        <mxCell id="fuentes" parent="main" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fillColor=#E6F3FF;strokeColor=#4A90D9;fontSize=14;fontStyle=1;dashed=1;rounded=1;" value="Fuentes de datos" vertex="1">
+          <mxGeometry x="20" y="60" width="240" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" parent="fuentes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Servicio público de posiciones de aeronaves" vertex="1">
+          <mxGeometry x="10" y="42" width="210" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" parent="fuentes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Instantánea local de respaldo" vertex="1">
+          <mxGeometry x="10" y="104" width="210" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" parent="fuentes" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#333333;" value="La segunda existe para que la aplicación corra sin red. No es un caché: es una foto guardada, y por eso no tiene hora." vertex="1">
+          <mxGeometry x="10" y="162" width="218" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="etl" parent="main" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fillColor=#E6F3FF;strokeColor=#4A90D9;fontSize=14;fontStyle=1;dashed=1;rounded=1;" value="Proceso ETL" vertex="1">
+          <mxGeometry x="300" y="60" width="420" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" parent="etl" style="swimlane;whiteSpace=wrap;html=1;startSize=36;fillColor=#98c1d9;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;rounded=1;" value="Extracción" vertex="1">
+          <mxGeometry x="12" y="42" width="192" height="196" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" parent="c4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Cliente de la fuente" vertex="1">
+          <mxGeometry x="10" y="42" width="168" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" parent="c4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Autenticación" vertex="1">
+          <mxGeometry x="10" y="80" width="168" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="c7" parent="c4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Caché de la credencial" vertex="1">
+          <mxGeometry x="10" y="118" width="168" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" parent="c4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Degradación en cascada" vertex="1">
+          <mxGeometry x="10" y="156" width="168" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" parent="etl" style="swimlane;whiteSpace=wrap;html=1;startSize=36;fillColor=#98c1d9;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;rounded=1;" value="Transformación" vertex="1">
+          <mxGeometry x="216" y="42" width="192" height="196" as="geometry" />
+        </mxCell>
+        <mxCell id="c10" parent="c9" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Normalización de registros" vertex="1">
+          <mxGeometry x="10" y="42" width="168" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="c11" parent="c9" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Descarte de incompletos" vertex="1">
+          <mxGeometry x="10" y="80" width="168" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="c12" parent="c9" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Recorte y conteo" vertex="1">
+          <mxGeometry x="10" y="118" width="168" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="c13" parent="etl" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#333333;" value="La E y la T corren dentro de la misma petición que sirve la pantalla. No hay proceso programado ni cola: nada ocurre si nadie abre la página." vertex="1">
+          <mxGeometry x="12" y="248" width="396" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="alm" parent="main" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fillColor=#fbeaea;strokeColor=#b85450;fontSize=14;fontStyle=1;dashed=1;rounded=1;" value="Almacenamiento" vertex="1">
+          <mxGeometry x="760" y="60" width="220" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="c14" parent="alm" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" value="Sin persistencia" vertex="1">
+          <mxGeometry x="14" y="46" width="192" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c15" parent="alm" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#333333;" value="Descartado a propósito, no olvidado.&lt;br&gt;&lt;br&gt;Lo que cuesta: no hay historia, no hay tendencia, y nadie puede responder qué pasó ayer.&lt;br&gt;&lt;br&gt;Es la primera pieza que habría que agregar si el tablero deja de ser una foto." vertex="1">
+          <mxGeometry x="14" y="104" width="192" height="208" as="geometry" />
+        </mxCell>
+        <mxCell id="cons" parent="main" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fillColor=#E6F3FF;strokeColor=#4A90D9;fontSize=14;fontStyle=1;dashed=1;rounded=1;" value="Capa de consumo" vertex="1">
+          <mxGeometry x="1020" y="60" width="280" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="c16" parent="cons" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Vista de posición de vuelos" vertex="1">
+          <mxGeometry x="10" y="42" width="250" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="c17" parent="cons" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Interfaz de datos para otros consumidores" vertex="1">
+          <mxGeometry x="10" y="94" width="250" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="c18" parent="cons" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Chequeo de salud del servicio" vertex="1">
+          <mxGeometry x="10" y="146" width="250" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="c19" parent="cons" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Procedencia del dato: fuente y hora" vertex="1">
+          <mxGeometry x="10" y="198" width="250" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="c20" parent="cons" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#333333;" value="La procedencia es un componente, no un adorno: sin ella una pantalla vieja se ve igual que una en vivo." vertex="1">
+          <mxGeometry x="12" y="254" width="254" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="e21" parent="main" source="fuentes" target="etl" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#666666;fontSize=11;exitX=1;exitY=0.18;exitDx=0;exitDy=0;entryX=0;entryY=0.18;entryDx=0;entryDy=0;" value="trae" edge="1">
+          <mxGeometry relative="1" as="geometry">
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e22" parent="main" source="etl" target="alm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#b85450;dashed=1;fontSize=11;fontColor=#b85450;exitX=1;exitY=0.18;exitDx=0;exitDy=0;entryX=0;entryY=0.18;entryDx=0;entryDy=0;" value="no carga" edge="1">
+          <mxGeometry relative="1" as="geometry">
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e23" parent="main" source="alm" target="cons" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#b85450;dashed=1;fontSize=11;fontColor=#b85450;exitX=1;exitY=0.18;exitDx=0;exitDy=0;entryX=0;entryY=0.18;entryDx=0;entryDy=0;" value="no lee" edge="1">
+          <mxGeometry relative="1" as="geometry">
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e24" parent="main" source="etl" target="cons" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#666666;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" value="el dato pasa directo, en la misma petición" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="510" y="415" />
+              <mxPoint x="1160" y="415" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="tr" parent="main" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fillColor=#E6F3FF;strokeColor=#4A90D9;fontSize=14;fontStyle=1;dashed=1;rounded=1;" value="Componentes transversales" vertex="1">
+          <mxGeometry x="20" y="450" width="1280" height="128" as="geometry" />
+        </mxCell>
+        <mxCell id="c25" parent="tr" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Empaque en contenedor" vertex="1">
+          <mxGeometry x="10" y="44" width="201" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="c26" parent="tr" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Pruebas automatizadas" vertex="1">
+          <mxGeometry x="221" y="44" width="201" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="c27" parent="tr" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Integración continua" vertex="1">
+          <mxGeometry x="432" y="44" width="201" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="c28" parent="tr" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Entrega a la nube" vertex="1">
+          <mxGeometry x="643" y="44" width="201" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="c29" parent="tr" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Gestión de secretos" vertex="1">
+          <mxGeometry x="854" y="44" width="201" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="c30" parent="tr" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Control de versiones" vertex="1">
+          <mxGeometry x="1065" y="44" width="201" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="c31" parent="tr" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#333333;" value="Los seis atraviesan todas las capas. Ninguno es opcional para poner esto en producción." vertex="1">
+          <mxGeometry x="10" y="94" width="1250" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="leg" parent="main" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fillColor=#E6F3FF;strokeColor=#4A90D9;fontSize=14;fontStyle=1;dashed=1;rounded=1;" value="Nomenclatura" vertex="1">
+          <mxGeometry x="20" y="598" width="1280" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="c32" parent="leg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Existe y está construido" vertex="1">
+          <mxGeometry x="12" y="44" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="c33" parent="leg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=1;" value="Falta por definir" vertex="1">
+          <mxGeometry x="274" y="44" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="c34" parent="leg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" value="Descartado a propósito" vertex="1">
+          <mxGeometry x="536" y="44" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="c35" parent="leg" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#333333;" value="Las flechas punteadas en rojo son caminos que NO existen." vertex="1">
+          <mxGeometry x="800" y="44" width="460" height="34" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

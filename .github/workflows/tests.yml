@@ -1,3 +1,16 @@
+# Corre las pruebas en cada push y en cada pull request.
+#
+# Por qué este workflow NO tiene ni un secreto, y no es un descuido:
+#
+# Ninguna prueba de este repositorio necesita credenciales. Las que tocan OpenSky usan
+# un cliente falso, y el único camino que sale de verdad a la red se ejerce a mano. Un
+# CI sin credenciales es un CI que no puede filtrar credenciales, y esa propiedad vale
+# más que la comodidad de poder desplegar desde acá.
+#
+# Los despliegues van por Cloud Build, con scripts/desplegar.sh, desde el proyecto que
+# sí tiene el IAM. Si algún día hiciera falta desplegar desde el CI, el camino es
+# Workload Identity Federation, NUNCA una llave de cuenta de servicio en un secreto de
+# GitHub.
 name: pruebas
 
 on:
@@ -10,8 +23,53 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: pip
+
       - run: pip install -r requirements-dev.txt
-      - run: pytest -q
+
+      # Un solo paso que corre la suite Y verifica que corrió lo que tiene que correr.
+      #
+      # Los dos centinelas existen porque un CI que da verde sin probar lo que cree es
+      # peor que no tener CI. Este repositorio ya se quemó una vez con una herramienta
+      # de verificación que dejó de verificar en silencio: el chequeo de recorte del
+      # deck de la sesión pedía `children.length === 0`, así que cualquier texto con una
+      # etiqueta adentro quedaba sin revisar, y dejó pasar cuatro recortes reales.
+      - name: pytest, y verificar que corrió todo
+        run: |
+          # `pipefail` es obligatorio: sin él, el código de salida de la tubería es el
+          # del `tee` (siempre 0) y un fallo de pytest pasaría inadvertido.
+          set -o pipefail
+          pytest -v 2>&1 | tee /tmp/crudo
+
+          # Los escapes de color se quitan ANTES de mirar la salida. Hoy pytest no
+          # colorea porque la tubería no es un TTY, pero si algún día lo hiciera, el
+          # chequeo de "skipped" dejaría de encontrar la palabra y concluiría que no
+          # hubo salteados: fallaría ABIERTO, o sea verde estando roto.
+          sed -r 's/\x1b\[[0-9;]*[a-zA-Z]//g' /tmp/crudo > /tmp/salida
+
+          # 1. Ninguna prueba se salteó. Un salteo silencioso es la forma más común de
+          #    que una suite se vacíe sin que nadie se entere.
+          if grep -qE "[0-9]+ skipped" /tmp/salida; then
+            echo "FALLA: hubo pruebas salteadas" >&2
+            grep -E "skipped" /tmp/salida >&2
+            exit 1
+          fi
+
+          # 2. Y la cuenta mínima, que es la red que atrapa el caso de que el chequeo de
+          #    arriba se rompa.
+          #
+          # OJO: MINIMO ES LA CUENTA EXACTA DE LA SUITE Y SE SUBE A MANO AL AGREGAR
+          # PRUEBAS. No es un piso "por si acaso": un MINIMO viejo es un centinela
+          # apagado. tests/test_centinela.py lo mantiene honesto: falla, con el número
+          # que hay que poner, en cuanto este valor se queda atrás.
+          MINIMO=14
+          corridos=$(grep -oP '\K[0-9]+(?= passed)' /tmp/salida | tail -1)
+          echo "pruebas corridas: ${corridos:-0} (mínimo esperado: $MINIMO), cero salteadas"
+          if [ "${corridos:-0}" -lt "$MINIMO" ]; then
+            echo "FALLA: corrieron ${corridos:-0} pruebas y se esperaban al menos $MINIMO." >&2
+            exit 1
+          fi

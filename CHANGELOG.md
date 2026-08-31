@@ -3,6 +3,23 @@
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 Versionado según [SemVer](https://semver.org/lang/es/).
 
+## [0.3.0] - 2026-08-31
+
+### Agregado
+- `diagrams/` con tres vistas en `.drawio` sin comprimir y su `.png` al lado: componentes
+  (N0), tecnologías (N1), y los tres entornos con su cruce con las ramas.
+- `scripts/desplegar.sh`, que **se niega a desplegar con el árbol sucio** y etiqueta la
+  imagen con el commit en vez de `latest`.
+- El CI verifica que la suite haya corrido de verdad: cero salteadas y una cuenta mínima.
+- `tests/test_centinela.py`, que mantiene ese mínimo honesto y revisa que el workflow siga
+  sin secretos.
+- README como guía completa de replicación: prerrequisitos, clonar, sacar las credenciales
+  de OpenSky paso a paso, correr en los tres niveles, probar y desplegar.
+
+### Quitado
+- `REQUERIMIENTO.md` sale del repositorio. Un pedido de negocio no nace en el repositorio
+  de quien lo va a implementar: vive con el material de la sesión.
+
 ## [0.2.0] - 2026-08-31
 
 ### Agregado

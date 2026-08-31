@@ -1,0 +1,145 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="Entornos y ramas" name="Entornos y ramas">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="960" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="main" parent="1" style="swimlane;whiteSpace=wrap;html=1;startSize=40;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;dashed=1;rounded=1;" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;font color=&quot;#293241&quot;&gt;Tres entornos, y qué prueba cada uno  ·  Tablero de vuelos&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry x="40" y="40" width="1420" height="872" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" parent="main" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fillColor=#eef7ea;strokeColor=#82b366;fontSize=14;fontStyle=1;dashed=1;rounded=1;" value="1 · Local" vertex="1">
+          <mxGeometry x="20" y="60" width="430" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" parent="c1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1;" value="uvicorn app.main:app --reload" vertex="1">
+          <mxGeometry x="12" y="42" width="406" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" parent="c1" style="swimlane;whiteSpace=wrap;html=1;fillColor=#98c1d9;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;rounded=1;fontSize=11;" value="Qué demuestra" vertex="1">
+          <mxGeometry x="12" y="104" width="406" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" parent="c1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Que la lógica hace lo que uno cree. Se guarda un archivo y la pantalla ya cambió: es donde se piensa." vertex="1">
+          <mxGeometry x="12" y="136" width="406" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" parent="c1" style="swimlane;whiteSpace=wrap;html=1;fillColor=#98c1d9;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;rounded=1;fontSize=11;" value="Qué NO demuestra" vertex="1">
+          <mxGeometry x="12" y="222" width="406" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" parent="c1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" value="Que las dependencias estén completas. Su máquina tiene cosas instaladas que el servidor no." vertex="1">
+          <mxGeometry x="12" y="254" width="406" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="c7" parent="c1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#333333;" value="Vuelta completa: segundos" vertex="1">
+          <mxGeometry x="12" y="340" width="406" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" parent="main" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fillColor=#E6F3FF;strokeColor=#4A90D9;fontSize=14;fontStyle=1;dashed=1;rounded=1;" value="2 · Contenedor" vertex="1">
+          <mxGeometry x="490" y="60" width="430" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" parent="c8" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1;" value="PUERTO=8099 docker compose up --build" vertex="1">
+          <mxGeometry x="12" y="42" width="406" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="c10" parent="c8" style="swimlane;whiteSpace=wrap;html=1;fillColor=#98c1d9;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;rounded=1;fontSize=11;" value="Qué demuestra" vertex="1">
+          <mxGeometry x="12" y="104" width="406" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="c11" parent="c8" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Que el empaque está completo y que corre en una máquina limpia. Es exactamente la imagen que va a producción." vertex="1">
+          <mxGeometry x="12" y="136" width="406" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="c12" parent="c8" style="swimlane;whiteSpace=wrap;html=1;fillColor=#98c1d9;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;rounded=1;fontSize=11;" value="Qué NO demuestra" vertex="1">
+          <mxGeometry x="12" y="222" width="406" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="c13" parent="c8" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" value="Que los permisos y las variables del entorno real estén bien. Acá el .env se lo pasa usted a mano." vertex="1">
+          <mxGeometry x="12" y="254" width="406" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="c14" parent="c8" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#333333;" value="Vuelta completa: un minuto" vertex="1">
+          <mxGeometry x="12" y="340" width="406" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="c15" parent="main" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fillColor=#E6F3FF;strokeColor=#4A90D9;fontSize=14;fontStyle=1;dashed=1;rounded=1;" value="3 · Nube" vertex="1">
+          <mxGeometry x="960" y="60" width="440" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="c16" parent="c15" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1;" value="scripts/desplegar.sh" vertex="1">
+          <mxGeometry x="12" y="42" width="416" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="c17" parent="c15" style="swimlane;whiteSpace=wrap;html=1;fillColor=#98c1d9;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;rounded=1;fontSize=11;" value="Qué demuestra" vertex="1">
+          <mxGeometry x="12" y="104" width="416" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="c18" parent="c15" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Que arranca con los permisos, los secretos y la red de verdad, y que responde en una dirección pública." vertex="1">
+          <mxGeometry x="12" y="136" width="416" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="c19" parent="c15" style="swimlane;whiteSpace=wrap;html=1;fillColor=#98c1d9;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;rounded=1;fontSize=11;" value="Qué NO demuestra" vertex="1">
+          <mxGeometry x="12" y="222" width="416" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="c20" parent="c15" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" value="Nada más queda por demostrar. Acá es donde se descubre lo que los otros dos no podían ver." vertex="1">
+          <mxGeometry x="12" y="254" width="416" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="c21" parent="c15" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#333333;" value="Vuelta completa: minutos" vertex="1">
+          <mxGeometry x="12" y="340" width="416" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="e22" parent="main" source="c1" target="c8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#4b7a1c;fontSize=11;fontColor=#3d6b12;fontStyle=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.28;entryY=1;entryDx=0;entryDy=0;" value="cuando la lógica ya está" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="235" y="462" />
+              <mxPoint x="610" y="462" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e23" parent="main" source="c8" target="c15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#4b7a1c;fontSize=11;fontColor=#3d6b12;fontStyle=1;exitX=0.72;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" value="cuando la imagen ya levanta" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="800" y="486" />
+              <mxPoint x="1180" y="486" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="regla" parent="main" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fillColor=#E6F3FF;strokeColor=#4A90D9;fontSize=14;fontStyle=1;dashed=1;rounded=1;" value="La regla" vertex="1">
+          <mxGeometry x="20" y="508" width="1380" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="c24" parent="regla" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#333333;" value="No se sube al siguiente nivel hasta que el anterior está en verde. Un fallo descubierto en el nivel 3 cuesta minutos de espera; el mismo fallo en el nivel 1 cuesta segundos." vertex="1">
+          <mxGeometry x="12" y="40" width="1356" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ram" parent="main" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fillColor=#E6F3FF;strokeColor=#4A90D9;fontSize=14;fontStyle=1;dashed=1;rounded=1;" value="Cómo se cruza con las ramas" vertex="1">
+          <mxGeometry x="20" y="600" width="1380" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="c25" parent="ram" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="rama de trabajo · feat/algo" vertex="1">
+          <mxGeometry x="12" y="44" width="420" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c26" parent="ram" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#333333;" value="Niveles 1 y 2, todas las vueltas que haga falta. Nadie más los ve. Acá vive el 90 % del trabajo de un día." vertex="1">
+          <mxGeometry x="12" y="96" width="420" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="c27" parent="ram" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="al empujar la rama" vertex="1">
+          <mxGeometry x="470" y="44" width="420" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c28" parent="ram" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#333333;" value="Integración continua: corre las pruebas en una máquina limpia, sin ningún secreto. Es el nivel 2 hecho por un tercero que no confía en usted." vertex="1">
+          <mxGeometry x="470" y="96" width="420" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="c29" parent="ram" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="al integrar a main" vertex="1">
+          <mxGeometry x="928" y="44" width="428" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="c30" parent="ram" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#333333;" value="Nivel 3. El script se niega a desplegar con el árbol sucio y etiqueta la imagen con el commit, para que siempre se pueda decir qué código está corriendo." vertex="1">
+          <mxGeometry x="928" y="96" width="428" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="e31" parent="ram" source="c25" target="c27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#666666;fontSize=11;" value="" edge="1">
+          <mxGeometry relative="1" as="geometry">
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e32" parent="ram" source="c27" target="c29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#666666;fontSize=11;" value="" edge="1">
+          <mxGeometry relative="1" as="geometry">
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg" parent="main" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fillColor=#E6F3FF;strokeColor=#4A90D9;fontSize=14;fontStyle=1;dashed=1;rounded=1;" value="Nomenclatura" vertex="1">
+          <mxGeometry x="20" y="798" width="1380" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="c33" parent="leg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="Lo que sí demuestra" vertex="1">
+          <mxGeometry x="12" y="40" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="c34" parent="leg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" value="Lo que no alcanza a ver" vertex="1">
+          <mxGeometry x="224" y="40" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="c35" parent="leg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;fontStyle=1;" value="El comando" vertex="1">
+          <mxGeometry x="436" y="40" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="c36" parent="leg" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" value="Momento del flujo de git" vertex="1">
+          <mxGeometry x="648" y="40" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="c37" parent="leg" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=11;fontColor=#333333;" value="Las flechas verdes son la condición para subir de nivel." vertex="1">
+          <mxGeometry x="862" y="40" width="500" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
