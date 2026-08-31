@@ -3,6 +3,13 @@
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 Versionado según [SemVer](https://semver.org/lang/es/).
 
+## [0.3.1] - 2026-08-31
+
+### Corregido
+- La degradación a un nivel más bajo **ahora se registra**. Antes el `except` se tragaba
+  el motivo y el servicio caía al respaldo sin una línea que explicara por qué, lo que
+  hizo imposible diagnosticar el primer despliegue a Cloud Run desde afuera.
+
 ## [0.3.0] - 2026-08-31
 
 ### Agregado

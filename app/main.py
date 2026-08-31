@@ -4,6 +4,7 @@ Hoy tiene una sola vista: la posición de los vuelos que se están siguiendo.
 """
 from __future__ import annotations
 
+import logging
 import time
 from pathlib import Path
 
@@ -15,8 +16,12 @@ from fastapi.templating import Jinja2Templates
 # El `.env` ya lo cargó `app/__init__.py`, que corre antes de esto.
 from app.opensky import obtener_vuelos
 
+# Sin esto los `log.warning` de opensky.py no salen: uvicorn configura su propio
+# logger y el resto del arbol se queda en WARNING pero sin manejador que escriba.
+logging.basicConfig(level=logging.INFO, format="%(levelname)s [%(name)s] %(message)s")
+
 BASE = Path(__file__).parent
-app = FastAPI(title="Tablero de vuelos", version="0.3.0")
+app = FastAPI(title="Tablero de vuelos", version="0.3.1")
 app.mount("/static", StaticFiles(directory=BASE / "static"), name="static")
 plantillas = Jinja2Templates(directory=str(BASE / "templates"))
 

@@ -21,12 +21,15 @@ cliente de API.
 from __future__ import annotations
 
 import json
+import logging
 import os
 import time
 from pathlib import Path
 from typing import NamedTuple
 
 import httpx
+
+log = logging.getLogger("opensky")
 
 RESPALDO = Path(__file__).parent / "static" / "vuelos-respaldo.json"
 URL = "https://opensky-network.org/api/states/all"
@@ -95,9 +98,14 @@ def _token(forzar: bool = False) -> str | None:
         )
         r.raise_for_status()
         datos = r.json()
-    except Exception:
+    except Exception as e:
         # Credenciales malas, sin red, o el servidor de auth caído. No es fatal:
-        # quien llama sigue con el nivel anónimo.
+        # quien llama sigue con el nivel anónimo. Pero se dice, porque un agente que
+        # degrada en silencio es imposible de diagnosticar desde afuera: eso costó
+        # una tarde el 2026-08-31, con el servicio en Cloud Run cayendo al respaldo
+        # sin una sola línea en los logs que explicara por qué.
+        log.warning("no se pudo obtener el token de OpenSky: %s: %s",
+                    type(e).__name__, e)
         return None
 
     _token_guardado["valor"] = datos.get("access_token")
@@ -134,6 +142,8 @@ def _pedir_estados() -> tuple[list, str, float | None]:
             return datos.get("states") or [], "opensky", datos.get("time")
         # Con credenciales que no sirven conviene intentar anónimo antes de
         # rendirse: 400 créditos son mejores que ninguno.
+        log.warning("OpenSky autenticado devolvió %s, se intenta anónimo: %s",
+                    r.status_code, r.text[:200])
 
     r = httpx.get(URL, timeout=TIMEOUT)
     r.raise_for_status()
@@ -173,7 +183,10 @@ def obtener_vuelos(limite: int = 40) -> Lote:
         vuelos = [v for v in (_normalizar(e) for e in estados) if v]
         if vuelos:
             return Lote(vuelos[:limite], fuente, momento)
-    except Exception:
-        pass
-    # El respaldo no lleva hora: es una instantánea guardada, no una lectura.
+        log.warning("OpenSky contestó pero sin vuelos usables: %s estados crudos",
+                    len(estados))
+    except Exception as e:
+        # Nunca se propaga: el tablero tiene que responder igual. Pero se registra
+        # el motivo, que es la diferencia entre degradar y fallar a ciegas.
+        log.warning("cayendo al respaldo local: %s: %s", type(e).__name__, e)
     return Lote(leer_respaldo()[:limite], "respaldo", None)
