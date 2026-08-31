@@ -3,6 +3,16 @@
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 Versionado según [SemVer](https://semver.org/lang/es/).
 
+## [0.4.1] - 2026-08-31
+
+### Cambiado
+- El servicio en Cloud Run pasa a **privado**, con `--no-allow-unauthenticated` y un
+  binding nominal de `roles/run.invoker`. Se abre con `gcloud run services proxy`. Mismo
+  criterio que el panel de int-01: nada queda expuesto porque a alguien le resultó cómodo.
+- Documentado que la bandera contraria, `--allow-unauthenticated`, **falla en silencio**:
+  el despliegue sale `SUCCESS`, el policy IAM queda vacío y todo devuelve 403 sin
+  explicación.
+
 ## [0.4.0] - 2026-08-31
 
 ### Agregado

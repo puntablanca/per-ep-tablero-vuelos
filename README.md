@@ -206,9 +206,53 @@ El script **se niega a desplegar con el árbol sucio** y etiqueta la imagen con 
 en vez de `latest`, para que siempre se pueda contestar qué código está corriendo. Corre
 las pruebas antes, y al terminar imprime qué revisión quedó arriba.
 
-**El servicio en Cloud Run no lee el `.env` local.** Las credenciales de OpenSky hay que
-ponerlas en el servicio, y lo correcto es por Secret Manager. Mientras no estén, el
-tablero desplegado corre en el nivel anónimo.
+### El servicio no es público
+
+Se despliega con `--no-allow-unauthenticated`, y quién puede invocarlo lo decide IAM con
+un binding nominal. No hay una dirección que cualquiera pueda abrir. Para verlo:
+
+```
+gcloud run services proxy tablero-vuelos --region=us-central1 --port=8099
+```
+
+Eso abre un túnel autenticado y el tablero queda en <http://localhost:8099>. El puerto va
+explícito porque el 8080 suele estar ocupado.
+
+Para darle acceso a alguien más:
+
+```
+gcloud run services add-iam-policy-binding tablero-vuelos \
+  --region=us-central1 --member=user:alguien@ejemplo.com --role=roles/run.invoker
+```
+
+**Un aviso que costó una tarde:** la bandera contraria, `--allow-unauthenticated`, **falla
+en silencio**. El despliegue sale `SUCCESS`, el policy IAM del servicio queda vacío, y
+todo devuelve 403 sin una línea que lo explique. Si algún día hace falta que sea público,
+hay que otorgar `run.invoker` a `allUsers` en un paso aparte **y verificar el policy**.
+
+### Las credenciales en la nube
+
+El servicio **no lee el `.env` local**. Las de OpenSky van por Secret Manager:
+
+```
+gcloud secrets create opensky-client-id --data-file=- <<< "su-usuario-api-client"
+gcloud run services update tablero-vuelos --region=us-central1 \
+  --set-secrets=OPENSKY_CLIENT_ID=opensky-client-id:latest
+```
+
+Con `--set-secrets` y no `--set-env-vars`: con variables de entorno el secreto queda
+visible en la descripción del servicio y en el historial de despliegues.
+
+### OpenSky no es alcanzable desde Cloud Run
+
+Medido el 31 de agosto de 2026: `ConnectTimeout` contra `194.209.200.34:443`, con 8 y con
+30 segundos de espera, en el servidor de autenticación y en el de datos. No es lentitud ni
+credenciales: el tráfico se descarta, que es lo que hace un servicio académico para
+defenderse de raspadores en la nube.
+
+**El servicio desplegado sirve siempre la instantánea local**, y lo dice en la barra. Por
+eso `OPENSKY_TIMEOUT` va bajo ahí: esperar por algo que no va a contestar solo hace lenta
+la página.
 
 ## Integración continua
 

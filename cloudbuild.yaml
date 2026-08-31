@@ -23,7 +23,22 @@ steps:
       - --image=${_REGION}-docker.pkg.dev/$PROJECT_ID/tablero/${_SERVICIO}:${_TAG}
       - --region=${_REGION}
       - --platform=managed
-      - --allow-unauthenticated
+      # Este servicio NO es publico, igual que el panel de int-01. IAM decide quien
+      # puede invocarlo, con un binding nominal, y se abre con
+      # `gcloud run services proxy`. Mismo criterio que ahi: nada queda expuesto
+      # porque a alguien le resulto comodo.
+      #
+      # Y hay una razon de mas para no ponerlo publico aca: OpenSky descarta el trafico
+      # de Cloud Run, asi que el servicio desplegado sirve la instantanea local. Un
+      # tablero publico que muestra datos viejos es peor que uno privado que los
+      # muestra viejos y lo dice.
+      #
+      # OJO, comprobado el 2026-08-31: la bandera CONTRARIA, --allow-unauthenticated,
+      # fallaba en silencio. El deploy salia SUCCESS, el policy IAM del servicio
+      # quedaba vacio, y todo devolvia 403 sin una linea que lo explicara. Si algun dia
+      # hace falta que sea publico, hay que otorgar run.invoker a allUsers en un paso
+      # aparte y verificar el policy, no confiar en la bandera.
+      - --no-allow-unauthenticated
       - --port=8080
 
 options:

@@ -57,7 +57,11 @@ gcloud run services describe "$SERVICIO" \
   --format='value(status.traffic[0].revisionName, spec.template.spec.containers[0].image, status.url)'
 
 echo
-echo "OJO con las credenciales: el servicio en Cloud Run no lee el .env local."
-echo "Las variables OPENSKY_CLIENT_ID y OPENSKY_CLIENT_SECRET hay que ponerlas en el"
-echo "servicio, y lo correcto es por Secret Manager, no con --set-env-vars. Mientras"
-echo "no estén, el tablero desplegado corre en el nivel anónimo de OpenSky."
+echo "El servicio NO es público. Para verlo, abra un túnel autenticado:"
+echo
+echo "  gcloud run services proxy $SERVICIO --region=$REGION --project=$PROYECTO --port=8099"
+echo
+echo "Y el tablero queda en http://localhost:8099"
+echo
+echo "OJO: OpenSky descarta el tráfico de Cloud Run, así que el servicio desplegado"
+echo "sirve la instantánea local, no datos en vivo. La barra lo dice."
