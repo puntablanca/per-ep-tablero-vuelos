@@ -71,6 +71,7 @@ def test_si_no_contesta_nadie_cae_al_respaldo(monkeypatch):
     monkeypatch.setattr(osky.httpx, "post", sin_red)
     _olvidar_token()
 
-    vuelos, fuente = osky.obtener_vuelos(3)
-    assert fuente == "respaldo"
-    assert len(vuelos) == 3, "el respaldo tiene que alcanzar para lo que se le pida"
+    lote = osky.obtener_vuelos(3)
+    assert lote.fuente == "respaldo"
+    assert lote.momento is None, "el respaldo no tiene hora, y eso es a propósito"
+    assert len(lote.vuelos) == 3, "el respaldo tiene que alcanzar para lo que se le pida"

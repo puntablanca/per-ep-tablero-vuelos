@@ -2,7 +2,10 @@ services:
   tablero:
     build: .
     ports:
-      - "8080:8080"
+      # El puerto de la máquina se puede cambiar sin tocar este archivo:
+      #   PUERTO=8099 docker compose up --build
+      # Hace falta cuando algo más ya tiene tomado el 8080, que pasa seguido.
+      - "${PUERTO:-8080}:8080"
     environment:
       PYTHONUNBUFFERED: "1"
       # Compose lee el `.env` de esta carpeta solo. El `:-` deja la variable vacía
@@ -10,3 +13,6 @@ services:
       # credenciales y la aplicación cae al nivel anónimo.
       OPENSKY_CLIENT_ID: ${OPENSKY_CLIENT_ID:-}
       OPENSKY_CLIENT_SECRET: ${OPENSKY_CLIENT_SECRET:-}
+      # Sin esto el contenedor corre en UTC y la hora del dato sale corrida
+      # respecto al reloj de quien mira la pantalla. Se pone en el `.env`.
+      TZ: ${TZ:-UTC}

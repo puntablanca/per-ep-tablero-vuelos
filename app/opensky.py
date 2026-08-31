@@ -24,6 +24,7 @@ import json
 import os
 import time
 from pathlib import Path
+from typing import NamedTuple
 
 import httpx
 
@@ -46,6 +47,22 @@ _token_guardado: dict = {"valor": None, "vence": 0.0}
 # Lo que OpenSky dice que queda de presupuesto, de la cabecera de la última
 # respuesta. Es None hasta que haya una llamada que la traiga.
 credito_restante: int | None = None
+
+
+class Lote(NamedTuple):
+    """Lo que devuelve una consulta de vuelos.
+
+    `momento` es la marca de tiempo que OpenSky manda con el lote, en segundos epoch.
+    **Es None cuando los datos salieron del respaldo local**, que no tiene hora, y esa
+    ausencia es información: significa que lo que se está viendo no es en vivo.
+
+    No es la hora en que se pidió el dato, es la hora en que OpenSky lo consolidó. Las
+    dos se separan por unos segundos, y saber cuántos es justamente el punto.
+    """
+
+    vuelos: list[dict]
+    fuente: str
+    momento: float | None
 
 
 def credenciales() -> tuple[str, str] | None:
@@ -98,8 +115,8 @@ def _anotar_credito(r: httpx.Response) -> None:
             pass
 
 
-def _pedir_estados() -> tuple[list, str]:
-    """Los estados crudos de OpenSky, y con qué credencial se consiguieron."""
+def _pedir_estados() -> tuple[list, str, float | None]:
+    """Los estados crudos, con qué credencial se consiguieron, y de cuándo son."""
     token = _token()
     if token:
         r = httpx.get(URL, headers={"Authorization": f"Bearer {token}"}, timeout=TIMEOUT)
@@ -113,14 +130,16 @@ def _pedir_estados() -> tuple[list, str]:
                 )
         if r.status_code == 200:
             _anotar_credito(r)
-            return r.json().get("states") or [], "opensky"
+            datos = r.json()
+            return datos.get("states") or [], "opensky", datos.get("time")
         # Con credenciales que no sirven conviene intentar anónimo antes de
         # rendirse: 400 créditos son mejores que ninguno.
 
     r = httpx.get(URL, timeout=TIMEOUT)
     r.raise_for_status()
     _anotar_credito(r)
-    return r.json().get("states") or [], "opensky-anonimo"
+    datos = r.json()
+    return datos.get("states") or [], "opensky-anonimo", datos.get("time")
 
 
 def _normalizar(estado: list) -> dict | None:
@@ -144,13 +163,17 @@ def leer_respaldo() -> list[dict]:
         return json.load(f)["vuelos"]
 
 
-def obtener_vuelos(limite: int = 40) -> tuple[list[dict], str]:
-    """Los vuelos y de dónde salieron: 'opensky', 'opensky-anonimo' o 'respaldo'."""
+def obtener_vuelos(limite: int = 40) -> Lote:
+    """Los vuelos, de dónde salieron, y de cuándo es el dato.
+
+    La fuente es 'opensky', 'opensky-anonimo' o 'respaldo'.
+    """
     try:
-        estados, fuente = _pedir_estados()
+        estados, fuente, momento = _pedir_estados()
         vuelos = [v for v in (_normalizar(e) for e in estados) if v]
         if vuelos:
-            return vuelos[:limite], fuente
+            return Lote(vuelos[:limite], fuente, momento)
     except Exception:
         pass
-    return leer_respaldo()[:limite], "respaldo"
+    # El respaldo no lleva hora: es una instantánea guardada, no una lectura.
+    return Lote(leer_respaldo()[:limite], "respaldo", None)

@@ -5,24 +5,58 @@ Ya corre: el trabajo de la sesión es agregarle una vista, no construirla desde 
 
 ## Correrla
 
+### Con Python, para desarrollar
+
+Un entorno propio, para no mezclar con lo que tenga instalado en el sistema:
+
 ```
+python3 -m venv .venv
+source .venv/bin/activate          # en Windows: .venv\Scripts\activate
 pip install -r requirements-dev.txt
+```
+
+Y a correr. El `--reload` recarga sola cuando guarda un archivo:
+
+```
 uvicorn app.main:app --reload --port 8080
 ```
 
-O con contenedor, que es lo que usa el pipeline:
+Queda en <http://localhost:8080/posicion>.
+
+**Si el 8080 está ocupado**, y pasa seguido, cambie el número:
+
+```
+uvicorn app.main:app --reload --port 8099
+```
+
+### Con contenedor, que es lo que usa el pipeline
 
 ```
 docker compose up --build
 ```
 
-Queda en <http://localhost:8080>.
+También en <http://localhost:8080/posicion>. Para usar otro puerto de la máquina:
+
+```
+PUERTO=8099 docker compose up --build
+```
+
+Compose lee el `.env` de esta carpeta, así que las credenciales y la zona horaria
+entran solas. Para dejarlo corriendo de fondo agregue `-d`, y para bajarlo:
+
+```
+docker compose down
+```
 
 ## Probarla
 
 ```
 pytest -q
 ```
+
+Son 12 pruebas y **ninguna sale a la red**: el cliente de OpenSky se reemplaza por uno
+falso. Si alguna falla por no encontrar el paquete `app`, es que se corrió desde otra
+carpeta: el `pyproject.toml` trae `pythonpath = ["."]` y hay que estar en la raíz.
 
 ## Qué hay adentro
 

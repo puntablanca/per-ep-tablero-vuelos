@@ -10,7 +10,10 @@ body{background:var(--fondo);color:var(--texto);font-family:var(--sans);font-siz
 .barra{display:flex;align-items:center;justify-content:space-between;
        padding:14px 22px;background:var(--panel);border-bottom:1px solid var(--linea)}
 .barra .marca{font-family:var(--mono);font-size:11px;letter-spacing:.22em;color:var(--apagado)}
-.barra .fuente{font-family:var(--mono);font-size:11px;color:var(--tenue)}
+.barra .fuente{font-family:var(--mono);font-size:11px;color:var(--tenue);text-align:right;line-height:1.5}
+/* la hora del dato es lo que distingue un tablero en vivo de uno congelado:
+   cuando el dato ya no es fresco, o cuando no hay dato en vivo, se marca */
+.barra .fuente .viejo{color:var(--alerta)}
 .barra nav{display:flex;gap:16px}
 .barra nav a{font-family:var(--mono);font-size:11px;letter-spacing:.08em;
              text-transform:uppercase;color:var(--tenue);text-decoration:none}

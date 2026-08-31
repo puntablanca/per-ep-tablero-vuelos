@@ -3,6 +3,23 @@
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 Versionado según [SemVer](https://semver.org/lang/es/).
 
+## [0.2.0] - 2026-08-31
+
+### Agregado
+- La barra del tablero muestra **de cuándo es el dato**: la hora que OpenSky trae con el
+  lote, su antigüedad, y la hora en que se cargó la página. Sin la última, una pestaña
+  vieja parece en vivo.
+- `GET /api/vuelos` devuelve `momento`, `hora` y `antiguedad_s`.
+- El puerto de la máquina se puede cambiar con `PUERTO=...` al levantar el contenedor.
+- La zona horaria del contenedor se toma de `TZ`: sin eso corre en UTC y la hora sale
+  corrida respecto al reloj de quien mira.
+
+### Cambiado
+- `obtener_vuelos()` devuelve un `Lote` con `vuelos`, `fuente` y `momento`, en vez de una
+  tupla de dos. Con tres valores una tupla suelta se vuelve adivinanza.
+- Cuando la fuente es el respaldo, la hora va en `null` y la pantalla lo dice. **No se le
+  inventa una hora**: que falte es la información.
+
 ## [0.1.1] - 2026-08-31
 
 ### Agregado

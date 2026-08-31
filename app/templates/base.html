@@ -7,7 +7,14 @@
 <div class="barra">
   <span class="marca">TABLERO DE VUELOS</span>
   <nav>{% block nav %}{% endblock %}</nav>
-  <span class="fuente">fuente: {{ fuente }}</span>
+  <span class="fuente">
+    fuente: {{ fuente }}
+    {%- if hora_dato %} · dato {{ hora_dato }}
+      <span class="{{ 'viejo' if antiguedad_s > 60 else '' }}">(hace {{ antiguedad_s }} s)</span>
+    {%- elif fuente is defined %} · <span class="viejo">instantánea local, sin hora</span>
+    {%- endif %}
+    · cargado {{ hora_de_carga() }}
+  </span>
 </div>
 {% block contenido %}{% endblock %}
 </body></html>
