@@ -66,7 +66,7 @@ jobs:
           # PRUEBAS. No es un piso "por si acaso": un MINIMO viejo es un centinela
           # apagado. tests/test_centinela.py lo mantiene honesto: falla, con el número
           # que hay que poner, en cuanto este valor se queda atrás.
-          MINIMO=15
+          MINIMO=19
           corridos=$(grep -oP '\K[0-9]+(?= passed)' /tmp/salida | tail -1)
           echo "pruebas corridas: ${corridos:-0} (mínimo esperado: $MINIMO), cero salteadas"
           if [ "${corridos:-0}" -lt "$MINIMO" ]; then
