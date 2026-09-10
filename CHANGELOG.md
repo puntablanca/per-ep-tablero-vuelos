@@ -3,6 +3,38 @@
 Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 Versionado según [SemVer](https://semver.org/lang/es/).
 
+## [0.5.0] - 2026-09-07
+
+### Agregado
+- Vista **`/aerolineas`**: los mismos vuelos agrupados por aerolínea, con cuántos se
+  siguen, cuántos están en tierra y la altitud promedio de los que van en ruta, ordenada
+  por la que tiene más vuelos en tierra. Pedido de operaciones: un renglón por vuelo no
+  responde cuál aerolínea está peor, que es la pregunta de todas las mañanas.
+- `TABLERO_PAIS` configurable por entorno, con `Mexico` por defecto y vacío para volver al
+  mundo entero. El nombre va como lo manda OpenSky: en inglés y sin tilde.
+- `app/aerolineas.py`, la agregación como función pura. No pide datos, no sabe de HTTP y
+  no toca el reloj, así que el caso raro —una aerolínea con todo en tierra, dos
+  empatadas— se prueba armándolo a mano en vez de esperar a que el cielo lo produzca.
+
+### Cambiado
+- El menú de la barra pasa de la vista a la plantilla base. Era un bloque vacío que cada
+  plantilla llenaba con su propio enlace, así que ninguna vista sabía de las otras; ahora
+  agregar una vista es agregar un renglón en un solo archivo.
+- El filtro de país corre **antes** del corte por límite, dentro de `obtener_vuelos()`.
+  Al revés la pantalla saldría vacía casi siempre —uno de cada noventa vuelos en el aire
+  es mexicano— y sin una línea en los registros que lo explicara.
+- El límite sube de 40 a 100 vuelos. Con el filtro de país, 40 dejó de alcanzar: hay unos
+  setenta mexicanos en el aire a media mañana, así que cortar en 40 tiraba la mitad y las
+  cuentas por aerolínea salían de un pedazo arbitrario del feed.
+
+### Sabido
+- **La aerolínea sale de las tres primeras letras del `callsign`**, que es la regla que
+  dio operaciones. Las matrículas privadas mexicanas empiezan con XA o XB, así que cada
+  avión particular queda como su propia "aerolínea" de un vuelo y la tabla arrastra una
+  cola de renglones de uno.
+- **El país es el de registro de la aeronave, no el de la ruta.** La fuente no trae ni
+  origen ni destino: no hay forma de hacerlo distinto con este dato.
+
 ## [0.4.2] - 2026-08-31
 
 ### Cambiado
