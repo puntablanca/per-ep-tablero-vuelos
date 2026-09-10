@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block titulo %}Vuelos por aerolínea{% endblock %}
+{% block contenido %}
+<div class="resumen">
+  {%- if peor %}
+  <span class="n">{{ peor.en_tierra }}</span>
+  <span class="t">vuelos en tierra en {{ peor.codigo }}, la más afectada</span>
+  {%- else %}
+  <span class="t">Ninguna aerolínea con vuelos ahora mismo</span>
+  {%- endif %}
+  <span class="s">{{ aerolineas|length }} aerolíneas · {{ vuelos_totales }} vuelos seguidos</span>
+</div>
+<table class="aerolineas">
+  <thead><tr><th>Aerolínea</th><th class="num">Vuelos seguidos</th>
+             <th class="num">En tierra</th>
+             <th class="num">Altitud promedio en ruta</th></tr></thead>
+  <tbody>
+  {% for a in aerolineas %}
+    <tr class="{{ 'tierra' if a.en_tierra else '' }}">
+      <td class="cs">{{ a.codigo }}</td>
+      <td class="num">{{ a.total }}</td>
+      <td class="num">{{ a.en_tierra }}</td>
+      {#- Sin ninguno en ruta no hay promedio que mostrar. Va una raya y no un
+          cero: cero metros se lee como "vuela a nivel del suelo", que es un dato
+          falso, y lo que pasa acá es que no hay dato. -#}
+      <td class="num">
+        {%- if a.altitud_promedio is none %}<span class="falta">—</span>
+        {%- else %}{{ '%.0f'|format(a.altitud_promedio) }} m
+        {%- endif %}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
