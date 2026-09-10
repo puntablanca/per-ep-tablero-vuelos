@@ -13,6 +13,11 @@ services:
       # credenciales y la aplicación cae al nivel anónimo.
       OPENSKY_CLIENT_ID: ${OPENSKY_CLIENT_ID:-}
       OPENSKY_CLIENT_SECRET: ${OPENSKY_CLIENT_SECRET:-}
+      # El país del tablero. Sin pasarlo acá, el contenedor usaría el valor por
+      # defecto del código y quien pusiera otro país en su `.env` vería que el
+      # nivel 1 le hace caso y el nivel 2 no, que es la clase de diferencia que
+      # cuesta una tarde encontrar.
+      TABLERO_PAIS: ${TABLERO_PAIS:-Mexico}
       # Sin esto el contenedor corre en UTC y la hora del dato sale corrida
       # respecto al reloj de quien mira la pantalla. Se pone en el `.env`.
       TZ: ${TZ:-UTC}

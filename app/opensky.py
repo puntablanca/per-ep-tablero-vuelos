@@ -42,6 +42,18 @@ URL_TOKEN = (
 # Poder subirlo sin tocar el codigo es lo que permite distinguir "lento" de "bloqueado".
 TIMEOUT = float(os.getenv("OPENSKY_TIMEOUT", "8"))
 
+# El tablero mira un solo país. Se lee del entorno en cada consulta, y no una vez
+# al importar, para que cambiarlo sea reiniciar el proceso y no editar el código.
+# Vacío significa el mundo entero, que es como estaba antes de que operaciones
+# pidiera la vista por aerolínea.
+PAIS_POR_DEFECTO = "Mexico"
+
+# Cuántos vuelos se traen. Eran 40, y con el filtro de país 40 dejó de alcanzar:
+# hay alrededor de 72 mexicanos en el aire a media mañana, así que cortar en 40
+# tiraba la mitad y las cuentas por aerolínea salían de un pedazo arbitrario del
+# feed. Con 100 entran todos y la tabla dice la verdad.
+LIMITE = 100
+
 # El token de OpenSky vive 30 minutos. Se renueva con margen para no llegar justo
 # y comerse un 401 en medio de una demostración.
 MARGEN_TOKEN = 120.0
@@ -171,13 +183,31 @@ def _normalizar(estado: list) -> dict | None:
     }
 
 
+def pais_configurado() -> str:
+    """El país al que se limita el tablero. Cadena vacía = sin filtro."""
+    return os.getenv("TABLERO_PAIS", PAIS_POR_DEFECTO).strip()
+
+
+def _del_pais(vuelos: list[dict]) -> list[dict]:
+    """Los vuelos del país configurado, o todos si no hay ninguno configurado.
+
+    El país que trae OpenSky es el de **registro de la aeronave**, no el de la
+    ruta ni el del aeropuerto: la fuente no tiene ese dato. `AMX404` cuenta como
+    mexicano esté donde esté, y un vuelo de otra bandera que aterrice en Ciudad
+    de México no cuenta. Es la única lectura posible con este dato, y conviene
+    saberla antes de explicarle la tabla a alguien.
+    """
+    pais = pais_configurado()
+    return [v for v in vuelos if v["pais"] == pais] if pais else vuelos
+
+
 def leer_respaldo() -> list[dict]:
     with RESPALDO.open(encoding="utf-8") as f:
         return json.load(f)["vuelos"]
 
 
-def obtener_vuelos(limite: int = 40) -> Lote:
-    """Los vuelos, de dónde salieron, y de cuándo es el dato.
+def obtener_vuelos(limite: int = LIMITE) -> Lote:
+    """Los vuelos del país configurado, de dónde salieron, y de cuándo es el dato.
 
     La fuente es 'opensky', 'opensky-anonimo' o 'respaldo'.
     """
@@ -185,11 +215,19 @@ def obtener_vuelos(limite: int = 40) -> Lote:
         estados, fuente, momento = _pedir_estados()
         vuelos = [v for v in (_normalizar(e) for e in estados) if v]
         if vuelos:
-            return Lote(vuelos[:limite], fuente, momento)
+            # El filtro va ANTES del corte, y ese orden es la diferencia entre una
+            # vista con datos y una vacía: de 6.620 vuelos en el aire unos 72 son
+            # mexicanos, uno de cada noventa. Cortando primero, el corte se lo
+            # comen los otros ochenta y nueve y no queda nada que filtrar.
+            return Lote(_del_pais(vuelos)[:limite], fuente, momento)
+        # Se pregunta por `vuelos`, que es antes de filtrar, a propósito: que
+        # OpenSky conteste y no haya ningún vuelo del país es una respuesta
+        # legítima —a las tres de la mañana pasa—, y responderla con la
+        # instantánea local sería inventar tráfico que no está volando.
         log.warning("OpenSky contestó pero sin vuelos usables: %s estados crudos",
                     len(estados))
     except Exception as e:
         # Nunca se propaga: el tablero tiene que responder igual. Pero se registra
         # el motivo, que es la diferencia entre degradar y fallar a ciegas.
         log.warning("cayendo al respaldo local: %s: %s", type(e).__name__, e)
-    return Lote(leer_respaldo()[:limite], "respaldo", None)
+    return Lote(_del_pais(leer_respaldo())[:limite], "respaldo", None)
