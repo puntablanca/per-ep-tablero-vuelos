@@ -154,7 +154,7 @@ detalle está más abajo, en [OpenSky no es alcanzable desde Cloud Run](#opensky
 pytest -q
 ```
 
-Son 15 pruebas y **ninguna sale a la red**: el cliente de OpenSky se reemplaza por uno
+Son 31 pruebas y **ninguna sale a la red**: el cliente de OpenSky se reemplaza por uno
 falso. Si alguna falla por no encontrar el paquete `app`, es que se corrió desde otra
 carpeta: el `pyproject.toml` trae `pythonpath = ["."]` y hay que estar en la raíz.
 
@@ -162,13 +162,53 @@ carpeta: el `pyproject.toml` trae `pythonpath = ["."]` y hay que estar en la ra�
 
 | Ruta | Qué hace |
 | --- | --- |
-| `/posicion` | La vista que ya existe: un renglón por vuelo |
+| `/posicion` | Un renglón por vuelo |
+| `/aerolineas` | Los mismos vuelos agrupados por aerolínea, la peor arriba |
 | `/api/vuelos` | Los mismos datos en JSON, con la hora del dato |
 | `/salud` | Para que el pipeline sepa si el servicio está arriba |
 
-La tabla muestra **40 vuelos**, que son los primeros que devuelve OpenSky, sin ordenar y
-sin filtrar. OpenSky manda unos trece mil en cada consulta, así que lo que se ve es
-menos del 1 %, y cambia por completo en cada recarga.
+Las dos vistas se enlazan entre sí desde el menú de la barra, y salen **del mismo lote**:
+consultan una sola vez y comparten el resultado, porque dos vistas que preguntan por
+separado se contradicen en cuanto una tarda más que la otra, y entonces hay que explicar
+cuál de los dos números es el bueno.
+
+### El tablero mira un solo país
+
+OpenSky manda unos seis mil quinientos vuelos utilizables en cada consulta. Sin filtrar,
+un renglón por vuelo no responde nada: es menos del 1 % de lo que hay y cambia por
+completo en cada recarga. Así que el tablero se limita a un país, y por defecto es
+**México**: unos setenta vuelos, que caben en una pantalla y se agrupan en aerolíneas de
+verdad.
+
+```
+TABLERO_PAIS=Mexico
+```
+
+| Valor | Qué hace |
+| --- | --- |
+| Sin poner nada | México, que es el valor por defecto |
+| `Chile`, `Panama`, `Spain`… | Ese país. El nombre va **en inglés y sin tilde**, como lo manda OpenSky |
+| Vacío | Sin filtro: el mundo entero, como estaba antes |
+
+Dos cosas que conviene saber antes de explicarle la tabla a alguien:
+
+- **Es el país de registro de la aeronave, no el de la ruta.** La fuente no trae ni
+  origen ni destino, así que `AMX404` cuenta como mexicano esté donde esté, y un vuelo de
+  otra bandera que aterrice en Ciudad de México no cuenta.
+- **El filtro corre antes del corte por límite**, y ese orden es lo que hace que la vista
+  sirva. Uno de cada noventa vuelos en el aire es mexicano: cortando a los primeros cien
+  y filtrando después, la pantalla saldría vacía casi siempre y sin un solo error en los
+  registros que explicara por qué.
+
+La aerolínea sale de las **tres primeras letras del `callsign`**: `AMX404` es `AMX`. Con
+esa regla las matrículas privadas mexicanas, que empiezan con XA o XB, quedan cada una
+como su propia "aerolínea" de un solo vuelo, y por eso la tabla tiene una cola de
+renglones de uno.
+
+La **altitud promedio no cuenta los vuelos en tierra**: reportan cero metros y hundirían
+el número hasta hacerlo decir que la flota vuela más bajo de lo que vuela. Cuando una
+aerolínea no tiene ningún vuelo en ruta, la columna muestra una raya y no un cero, porque
+cero metros es un dato y lo que hay ahí es ausencia de dato.
 
 **La barra de arriba dice de cuándo es el dato:**
 
