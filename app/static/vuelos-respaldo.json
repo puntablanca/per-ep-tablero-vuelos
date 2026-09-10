@@ -1,6 +1,663 @@
 {
-  "generado": "instantánea de ejemplo, para trabajar sin red",
+  "generado": "instantánea real de OpenSky del 2026-09-07 21:02 hora local, para trabajar sin red. Trae los 73 vuelos mexicanos que había en el aire en ese momento, y detrás 55 de otros países, que es lo que hace falta para que TABLERO_PAIS pruebe algo: con una instantánea de un solo país, el filtro pasaría sin filtrar.",
   "vuelos": [
+    {
+      "callsign": "VIV7447",
+      "pais": "Mexico",
+      "longitud": -111.2163,
+      "latitud": 28.9862,
+      "altitud": 944.88,
+      "velocidad": 90.3,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VIV1228",
+      "pais": "Mexico",
+      "longitud": -95.7956,
+      "latitud": 18.6743,
+      "altitud": 10675.62,
+      "velocidad": 242.27,
+      "en_tierra": false
+    },
+    {
+      "callsign": "XAJVM",
+      "pais": "Mexico",
+      "longitud": -113.2396,
+      "latitud": 33.8371,
+      "altitud": 13716,
+      "velocidad": 227.55,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VOI184",
+      "pais": "Mexico",
+      "longitud": -98.7979,
+      "latitud": 19.6292,
+      "altitud": 4137.66,
+      "velocidad": 161.72,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VIV1373",
+      "pais": "Mexico",
+      "longitud": -97.7732,
+      "latitud": 20.4214,
+      "altitud": 10370.82,
+      "velocidad": 231.73,
+      "en_tierra": false
+    },
+    {
+      "callsign": "XACBQ",
+      "pais": "Mexico",
+      "longitud": -75.3426,
+      "latitud": 39.8984,
+      "altitud": 5120.64,
+      "velocidad": 203.42,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VOI702",
+      "pais": "Mexico",
+      "longitud": -96.6032,
+      "latitud": 26.8055,
+      "altitud": 10660.38,
+      "velocidad": 230.49,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VOI1870",
+      "pais": "Mexico",
+      "longitud": -117.6704,
+      "latitud": 43.4455,
+      "altitud": 10957.56,
+      "velocidad": 207.83,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX837",
+      "pais": "Mexico",
+      "longitud": -99.0821,
+      "latitud": 19.4291,
+      "altitud": 2110.74,
+      "velocidad": 89.02,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VIV3104",
+      "pais": "Mexico",
+      "longitud": -115.7105,
+      "latitud": 32.1565,
+      "altitud": 5996.94,
+      "velocidad": 192.38,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX708",
+      "pais": "Mexico",
+      "longitud": -83.0064,
+      "latitud": 9.6097,
+      "altitud": 11277.6,
+      "velocidad": 230.76,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VIV002",
+      "pais": "Mexico",
+      "longitud": -99.9514,
+      "latitud": 25.6833,
+      "altitud": 3063.24,
+      "velocidad": 150.24,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX664",
+      "pais": "Mexico",
+      "longitud": -117.8049,
+      "latitud": 34.1548,
+      "altitud": 10972.8,
+      "velocidad": 226.64,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VIV7282",
+      "pais": "Mexico",
+      "longitud": -98.2228,
+      "latitud": 16.2526,
+      "altitud": 5646.42,
+      "velocidad": 215.4,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VIV770",
+      "pais": "Mexico",
+      "longitud": -91.1575,
+      "latitud": 14.5947,
+      "altitud": 10683.24,
+      "velocidad": 230.95,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VIV1020",
+      "pais": "Mexico",
+      "longitud": -98.5546,
+      "latitud": 19.5003,
+      "altitud": 5532.12,
+      "velocidad": 181.13,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX715",
+      "pais": "Mexico",
+      "longitud": -111.0536,
+      "latitud": 29.0908,
+      "altitud": 0,
+      "velocidad": 0.64,
+      "en_tierra": true
+    },
+    {
+      "callsign": "VIV4187",
+      "pais": "Mexico",
+      "longitud": -100.2273,
+      "latitud": 25.8447,
+      "altitud": 1005.84,
+      "velocidad": 75.8,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VTM7701",
+      "pais": "Mexico",
+      "longitud": -106.5167,
+      "latitud": 31.542,
+      "altitud": 1767.84,
+      "velocidad": 96.04,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX321",
+      "pais": "Mexico",
+      "longitud": -99.135,
+      "latitud": 19.2848,
+      "altitud": 3375.66,
+      "velocidad": 112.98,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX029",
+      "pais": "Mexico",
+      "longitud": -58.6352,
+      "latitud": -31.8745,
+      "altitud": 10058.4,
+      "velocidad": 245.48,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VOI5611",
+      "pais": "Mexico",
+      "longitud": -100.0972,
+      "latitud": 25.7722,
+      "altitud": 0,
+      "velocidad": 7.72,
+      "en_tierra": true
+    },
+    {
+      "callsign": "VOI1772",
+      "pais": "Mexico",
+      "longitud": -116.2727,
+      "latitud": 32.9782,
+      "altitud": 9144,
+      "velocidad": 210.44,
+      "en_tierra": false
+    },
+    {
+      "callsign": "XAJGN",
+      "pais": "Mexico",
+      "longitud": -99.7783,
+      "latitud": 24.2586,
+      "altitud": 11582.4,
+      "velocidad": 208.07,
+      "en_tierra": false
+    },
+    {
+      "callsign": "XAZZZ",
+      "pais": "Mexico",
+      "longitud": -81.5008,
+      "latitud": 37.6793,
+      "altitud": 13716,
+      "velocidad": 231.99,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VIV1138",
+      "pais": "Mexico",
+      "longitud": -100.2937,
+      "latitud": 25.9394,
+      "altitud": 2065.02,
+      "velocidad": 90.96,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VIV8014",
+      "pais": "Mexico",
+      "longitud": -100.0975,
+      "latitud": 25.7717,
+      "altitud": 0,
+      "velocidad": 8.75,
+      "en_tierra": true
+    },
+    {
+      "callsign": "VOI3085",
+      "pais": "Mexico",
+      "longitud": -116.942,
+      "latitud": 32.5373,
+      "altitud": 228.6,
+      "velocidad": 69.44,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VIV686",
+      "pais": "Mexico",
+      "longitud": -81.5672,
+      "latitud": 34.5455,
+      "altitud": 10675.62,
+      "velocidad": 240.86,
+      "en_tierra": false
+    },
+    {
+      "callsign": "XACZG",
+      "pais": "Mexico",
+      "longitud": -116.7109,
+      "latitud": 32.3545,
+      "altitud": 4472.94,
+      "velocidad": 168.19,
+      "en_tierra": false
+    },
+    {
+      "callsign": "BH971",
+      "pais": "Mexico",
+      "longitud": 90.352,
+      "latitud": 23.7863,
+      "altitud": 335.28,
+      "velocidad": 45.46,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VIV546",
+      "pais": "Mexico",
+      "longitud": -96.3014,
+      "latitud": 32.139,
+      "altitud": 10675.62,
+      "velocidad": 235.08,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX471",
+      "pais": "Mexico",
+      "longitud": -97.615,
+      "latitud": 23.6133,
+      "altitud": 11582.4,
+      "velocidad": 220.91,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX403",
+      "pais": "Mexico",
+      "longitud": -99.2098,
+      "latitud": 19.3754,
+      "altitud": 2887.98,
+      "velocidad": 107.39,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX682",
+      "pais": "Mexico",
+      "longitud": -93.8129,
+      "latitud": 33.187,
+      "altitud": 11277.6,
+      "velocidad": 235.2,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VIV0003",
+      "pais": "Mexico",
+      "longitud": -100.0447,
+      "latitud": 26.7818,
+      "altitud": 9357.36,
+      "velocidad": 237.73,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX375",
+      "pais": "Mexico",
+      "longitud": -99.1036,
+      "latitud": 19.417,
+      "altitud": 2240.28,
+      "velocidad": 90.87,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VIV5008",
+      "pais": "Mexico",
+      "longitud": -111.1273,
+      "latitud": 27.466,
+      "altitud": 10668,
+      "velocidad": 233.26,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VOI801",
+      "pais": "Mexico",
+      "longitud": -99.4953,
+      "latitud": 27.2689,
+      "altitud": 11590.02,
+      "velocidad": 236.29,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VOI244",
+      "pais": "Mexico",
+      "longitud": -99.3468,
+      "latitud": 24.8643,
+      "altitud": 8709.66,
+      "velocidad": 232.15,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VOI1810",
+      "pais": "Mexico",
+      "longitud": -113.4716,
+      "latitud": 30.4889,
+      "altitud": 9144,
+      "velocidad": 231.63,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VOI9362",
+      "pais": "Mexico",
+      "longitud": -116.9551,
+      "latitud": 32.3609,
+      "altitud": 3520.44,
+      "velocidad": 167.46,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VOI770",
+      "pais": "Mexico",
+      "longitud": -114.5564,
+      "latitud": 32.2386,
+      "altitud": 10965.18,
+      "velocidad": 232.08,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX108",
+      "pais": "Mexico",
+      "longitud": -99.0012,
+      "latitud": 19.4776,
+      "altitud": 2827.02,
+      "velocidad": 118.67,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX555",
+      "pais": "Mexico",
+      "longitud": -98.9806,
+      "latitud": 19.8957,
+      "altitud": 6979.92,
+      "velocidad": 180,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX656",
+      "pais": "Mexico",
+      "longitud": -86.9652,
+      "latitud": 11.3087,
+      "altitud": 11887.2,
+      "velocidad": 235.82,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VOI3223",
+      "pais": "Mexico",
+      "longitud": -99.303,
+      "latitud": 21.2302,
+      "altitud": 11087.1,
+      "velocidad": 235.5,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VIV1188",
+      "pais": "Mexico",
+      "longitud": -99.0896,
+      "latitud": 17.9388,
+      "altitud": 9860.28,
+      "velocidad": 231.63,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VOI183",
+      "pais": "Mexico",
+      "longitud": -99.0773,
+      "latitud": 19.4363,
+      "altitud": 0,
+      "velocidad": 2.57,
+      "en_tierra": true
+    },
+    {
+      "callsign": "VOI7730",
+      "pais": "Mexico",
+      "longitud": -95.4807,
+      "latitud": 30.3159,
+      "altitud": 11285.22,
+      "velocidad": 229.88,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VOI7790",
+      "pais": "Mexico",
+      "longitud": -111.0202,
+      "latitud": 32.1822,
+      "altitud": 11574.78,
+      "velocidad": 228.65,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VOI1841",
+      "pais": "Mexico",
+      "longitud": -95.1237,
+      "latitud": 33.1936,
+      "altitud": 11590.02,
+      "velocidad": 237.68,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX784",
+      "pais": "Mexico",
+      "longitud": -118.38,
+      "latitud": 33.9377,
+      "altitud": 76.2,
+      "velocidad": 78.29,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VOI1771",
+      "pais": "Mexico",
+      "longitud": -122.2168,
+      "latitud": 37.7135,
+      "altitud": 0,
+      "velocidad": 0,
+      "en_tierra": true
+    },
+    {
+      "callsign": "AMX404",
+      "pais": "Mexico",
+      "longitud": -75.4743,
+      "latitud": 38.0168,
+      "altitud": 11277.6,
+      "velocidad": 211.19,
+      "en_tierra": false
+    },
+    {
+      "callsign": "ESF321",
+      "pais": "Mexico",
+      "longitud": -110.9969,
+      "latitud": 29.123,
+      "altitud": 838.2,
+      "velocidad": 101.99,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VOI900",
+      "pais": "Mexico",
+      "longitud": -90.5525,
+      "latitud": 14.4769,
+      "altitud": 1851.66,
+      "velocidad": 75.12,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VIV7404",
+      "pais": "Mexico",
+      "longitud": -99.0708,
+      "latitud": 25.4891,
+      "altitud": 7094.22,
+      "velocidad": 204.05,
+      "en_tierra": false
+    },
+    {
+      "callsign": "XARFC",
+      "pais": "Mexico",
+      "longitud": -100.2651,
+      "latitud": 26.8513,
+      "altitud": 3040.38,
+      "velocidad": 86.14,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VIV3196",
+      "pais": "Mexico",
+      "longitud": -100.1202,
+      "latitud": 25.723,
+      "altitud": 4953,
+      "velocidad": 168.12,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX643",
+      "pais": "Mexico",
+      "longitud": -110.5056,
+      "latitud": 27.9506,
+      "altitud": 11277.6,
+      "velocidad": 232.4,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VIV7413",
+      "pais": "Mexico",
+      "longitud": -96.93,
+      "latitud": 20.1659,
+      "altitud": 11262.36,
+      "velocidad": 229.61,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VOI3383",
+      "pais": "Mexico",
+      "longitud": -97.558,
+      "latitud": 20.0575,
+      "altitud": 8450.58,
+      "velocidad": 209.66,
+      "en_tierra": false
+    },
+    {
+      "callsign": "WIN1201",
+      "pais": "Mexico",
+      "longitud": -84.5655,
+      "latitud": 38.9469,
+      "altitud": 1402.08,
+      "velocidad": 128.74,
+      "en_tierra": false
+    },
+    {
+      "callsign": "XBRCM",
+      "pais": "Mexico",
+      "longitud": -106.2083,
+      "latitud": 30.296,
+      "altitud": 10088.88,
+      "velocidad": 207.2,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VIV7017",
+      "pais": "Mexico",
+      "longitud": -99.2165,
+      "latitud": 19.7934,
+      "altitud": 3192.78,
+      "velocidad": 131.86,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VOI3316",
+      "pais": "Mexico",
+      "longitud": -111.2398,
+      "latitud": 27.8712,
+      "altitud": 7536.18,
+      "velocidad": 186.92,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX1605",
+      "pais": "Mexico",
+      "longitud": -99.8421,
+      "latitud": 19.991,
+      "altitud": 6301.74,
+      "velocidad": 180.16,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VOI731",
+      "pais": "Mexico",
+      "longitud": -97.5998,
+      "latitud": 25.0681,
+      "altitud": 10957.56,
+      "velocidad": 226.22,
+      "en_tierra": false
+    },
+    {
+      "callsign": "RFD19",
+      "pais": "Mexico",
+      "longitud": -99.776,
+      "latitud": 25.8076,
+      "altitud": 3040.38,
+      "velocidad": 91.18,
+      "en_tierra": false
+    },
+    {
+      "callsign": "VOI1702",
+      "pais": "Mexico",
+      "longitud": -100.3351,
+      "latitud": 26.4209,
+      "altitud": 10660.38,
+      "velocidad": 230.29,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX120",
+      "pais": "Mexico",
+      "longitud": -103.5578,
+      "latitud": 25.8231,
+      "altitud": 11887.2,
+      "velocidad": 242.76,
+      "en_tierra": false
+    },
+    {
+      "callsign": "AMX184",
+      "pais": "Mexico",
+      "longitud": -98.8752,
+      "latitud": 20.2593,
+      "altitud": 7269.48,
+      "velocidad": 209.99,
+      "en_tierra": false
+    },
     {
       "callsign": "AAL3998",
       "pais": "United States",
@@ -89,15 +746,6 @@
       "latitud": 23.7295,
       "altitud": 1989.8,
       "velocidad": 228.1,
-      "en_tierra": false
-    },
-    {
-      "callsign": "ACA9470",
-      "pais": "Mexico",
-      "longitud": -46.2925,
-      "latitud": 27.3883,
-      "altitud": 2575.7,
-      "velocidad": 220.4,
       "en_tierra": false
     },
     {
@@ -191,15 +839,6 @@
       "en_tierra": false
     },
     {
-      "callsign": "LAN5882",
-      "pais": "Mexico",
-      "longitud": -32.4105,
-      "latitud": -3.6784,
-      "altitud": 8624.8,
-      "velocidad": 195.6,
-      "en_tierra": true
-    },
-    {
       "callsign": "ACA1092",
       "pais": "United States",
       "longitud": 2.31,
@@ -287,15 +926,6 @@
       "latitud": 14.8766,
       "altitud": 433.6,
       "velocidad": 109.5,
-      "en_tierra": false
-    },
-    {
-      "callsign": "CMP7920",
-      "pais": "Mexico",
-      "longitud": 0.8517,
-      "latitud": 41.6781,
-      "altitud": 12040.3,
-      "velocidad": 115.1,
       "en_tierra": false
     },
     {
@@ -389,15 +1019,6 @@
       "en_tierra": false
     },
     {
-      "callsign": "AVA640",
-      "pais": "Mexico",
-      "longitud": -10.3394,
-      "latitud": -26.593,
-      "altitud": 6125.9,
-      "velocidad": 83.7,
-      "en_tierra": false
-    },
-    {
       "callsign": "CMP5855",
       "pais": "United States",
       "longitud": -69.3896,
@@ -485,15 +1106,6 @@
       "latitud": 41.7202,
       "altitud": 2185.7,
       "velocidad": 6.2,
-      "en_tierra": false
-    },
-    {
-      "callsign": "UAL2087",
-      "pais": "Mexico",
-      "longitud": -114.7911,
-      "latitud": -24.1017,
-      "altitud": 5879.4,
-      "velocidad": 184.5,
       "en_tierra": false
     },
     {
