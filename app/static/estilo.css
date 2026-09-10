@@ -38,3 +38,13 @@ td.cs{font-family:var(--mono);font-weight:600}
 td.num{font-family:var(--mono);text-align:right;font-variant-numeric:tabular-nums}
 tr.tierra td.cs,tr.tierra td.estado{color:var(--alerta);font-weight:700}
 td.estado{font-family:var(--mono);font-size:11px;color:var(--acento)}
+/* la raya de "no hay promedio" se apaga a propósito: es ausencia de dato, y no
+   tiene que competir por la vista con los números que sí están */
+td .falta{color:var(--tenue)}
+/* La tabla por aerolínea tiene cuatro columnas contra las siete de la posición, así
+   que en una pantalla ancha se estira y cada número termina lejos del encabezado que
+   lo nombra. Las tres numéricas se fijan angostas y la primera absorbe lo que sobre.
+   El encabezado se alinea con su columna: un rótulo a la izquierda sobre números a la
+   derecha obliga a buscar cuál nombra a cuál. */
+table.aerolineas th.num{text-align:right;white-space:nowrap}
+table.aerolineas th.num,table.aerolineas td.num{width:190px}

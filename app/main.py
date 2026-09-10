@@ -1,6 +1,7 @@
 """Tablero de vuelos.
 
-Hoy tiene una sola vista: la posición de los vuelos que se están siguiendo.
+Dos vistas sobre el mismo lote: la posición de cada vuelo, y el mismo dato
+agrupado por aerolínea, que es como se responde cuál está peor esta mañana.
 """
 from __future__ import annotations
 
@@ -14,14 +15,15 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 # El `.env` ya lo cargó `app/__init__.py`, que corre antes de esto.
-from app.opensky import obtener_vuelos
+from app.aerolineas import agrupar_por_aerolinea
+from app.opensky import LIMITE, obtener_vuelos
 
 # Sin esto los `log.warning` de opensky.py no salen: uvicorn configura su propio
 # logger y el resto del arbol se queda en WARNING pero sin manejador que escriba.
 logging.basicConfig(level=logging.INFO, format="%(levelname)s [%(name)s] %(message)s")
 
 BASE = Path(__file__).parent
-app = FastAPI(title="Tablero de vuelos", version="0.4.1")
+app = FastAPI(title="Tablero de vuelos", version="0.5.0")
 app.mount("/static", StaticFiles(directory=BASE / "static"), name="static")
 plantillas = Jinja2Templates(directory=str(BASE / "templates"))
 
@@ -46,7 +48,7 @@ def salud() -> dict:
 
 
 @app.get("/api/vuelos")
-def api_vuelos(limite: int = 40) -> dict:
+def api_vuelos(limite: int = LIMITE) -> dict:
     lote = obtener_vuelos(limite)
     return {
         "fuente": lote.fuente,
@@ -76,6 +78,32 @@ def posicion(request: Request):
             "vuelos": lote.vuelos,
             "fuente": lote.fuente,
             "sin_senal": len(sin_senal),
+            "hora_dato": _hora(lote.momento),
+            "antiguedad_s": _antiguedad(lote.momento),
+        },
+    )
+
+
+@app.get("/aerolineas")
+def aerolineas(request: Request):
+    """El mismo lote que /posicion, agrupado por aerolínea.
+
+    Comparte la fuente con la otra vista a propósito: dos vistas que consultan
+    por separado se contradicen entre sí en cuanto una tarda más que la otra, y
+    entonces hay que explicar cuál de los dos números es el bueno.
+    """
+    lote = obtener_vuelos()
+    filas = agrupar_por_aerolinea(lote.vuelos)
+    return plantillas.TemplateResponse(
+        request=request,
+        name="aerolineas.html",
+        context={
+            "aerolineas": filas,
+            # La primera es la que tiene más vuelos en tierra: la agrupación ya
+            # viene ordenada por eso, así que la vista no vuelve a decidirlo.
+            "peor": filas[0] if filas else None,
+            "vuelos_totales": len(lote.vuelos),
+            "fuente": lote.fuente,
             "hora_dato": _hora(lote.momento),
             "antiguedad_s": _antiguedad(lote.momento),
         },

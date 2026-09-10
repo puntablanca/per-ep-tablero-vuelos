@@ -6,7 +6,14 @@
 </head><body>
 <div class="barra">
   <span class="marca">TABLERO DE VUELOS</span>
-  <nav>{% block nav %}{% endblock %}</nav>
+  {#- El menú vive acá y no en cada vista: era un bloque vacío que cada plantilla
+      llenaba con su propio enlace, y así ninguna vista sabía de las otras. Con los
+      enlaces en la base, agregar una vista es agregar un renglón acá. -#}
+  <nav>
+    {%- for ruta, nombre in [('/posicion', 'Posición'), ('/aerolineas', 'Aerolíneas')] %}
+    <a href="{{ ruta }}"{% if request.url.path == ruta %} aria-current="page"{% endif %}>{{ nombre }}</a>
+    {%- endfor %}
+  </nav>
   <span class="fuente">
     fuente: {{ fuente }}
     {%- if hora_dato %} · dato {{ hora_dato }}
